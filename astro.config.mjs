@@ -12,7 +12,7 @@ import { defineConfig } from 'astro/config';
  * 改这里之后，别忘了同步 public/robots.txt 里的 Sitemap 地址。
  */
 export default defineConfig({
-  site: 'https://xi-lab-xdu.github.io',
+  site: 'https://cKk038.github.io',
   build: {
     // 生成 /team/index.html 这种目录式结构，GitHub Pages 访问 /team 时不会 404
     format: 'directory',
