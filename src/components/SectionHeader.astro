@@ -1,0 +1,46 @@
+---
+/**
+ * 区块标题：橙色大写小标签（左右横线）+ 大标题 + 可选副标题
+ */
+import type { L, Lang } from '../i18n/ui';
+import { t } from '../i18n/ui';
+
+interface Props {
+  eyebrow?: L;
+  heading?: string;
+  intro?: L;
+  lang: Lang;
+  /** 居中（默认）还是左对齐 */
+  align?: 'center' | 'start';
+}
+
+const { eyebrow, heading, intro, lang, align = 'center' } = Astro.props;
+---
+
+<header class:list={['section-head', align === 'center' ? 'text-center' : 'text-start']}>
+  {eyebrow && (
+    <p class:list={['eyebrow', align === 'start' && 'is-start']}>{t(eyebrow, lang)}</p>
+  )}
+  {heading && <h2 class="section-head__title">{heading}</h2>}
+  {intro && <p class="section-head__intro">{t(intro, lang)}</p>}
+</header>
+
+<style>
+  .section-head {
+    margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  }
+
+  .section-head__title {
+    margin-bottom: 0.75rem;
+  }
+
+  .section-head__intro {
+    max-width: 62ch;
+    margin: 0 auto;
+    color: var(--muted);
+  }
+
+  .text-start .section-head__intro {
+    margin-left: 0;
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+/**
+ * 教师卡片：照片（没有则用姓名首字母色块）+ 姓名 + 职称 + 研究方向 + 主页/邮箱链接
+ */
+import { initials, displayName, type Person } from '../data/people';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  person: Person;
+  lang: Lang;
+}
+
+const { person, lang } = Astro.props;
+const name = displayName(person, lang);
+---
+
+<article class="person-card">
+  <div class="person-card__photo">
+    {person.photo ? (
+      <img src={person.photo} alt={name} loading="lazy" decoding="async" width="400" height="400" />
+    ) : (
+      <span class="avatar-initials" aria-hidden="true">{initials(person.name)}</span>
+    )}
+  </div>
+
+  <div class="person-card__body">
+    <h3 class="person-card__name">
+      {person.url ? (
+        <a href={person.url} target="_blank" rel="noopener noreferrer">{name}</a>
+      ) : (
+        name
+      )}
+    </h3>
+
+    {person.role && <p class="person-card__role mb-0">{person.role[lang]}</p>}
+
+    {person.interests && <p class="person-card__interests mb-0">{person.interests[lang]}</p>}
+
+    {(person.email || person.url) && (
+      <div class="person-card__links">
+        {person.email && (
+          <a href={`mailto:${person.email}`} aria-label={`Email ${name}`} title={person.email}>
+            <i class="bi bi-envelope" aria-hidden="true"></i>
+          </a>
+        )}
+        {person.url && (
+          <a
+            href={person.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${name} homepage`}
+            title={person.url}
+          >
+            <i class="bi bi-link-45deg" aria-hidden="true"></i>
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+</article>

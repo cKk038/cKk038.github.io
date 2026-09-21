@@ -1,0 +1,181 @@
+---
+/**
+ * 团队页：负责人详情 → 教师网格 → 在读学生（按年级分组）→ 毕业校友（按年级分组）
+ *
+ * · 填了 `bio` 的教师渲染成负责人详情区，没填的走网格卡片 —— 所以以后加入新老师，
+ *   不加 bio 就会自动出现在网格里，不用改代码。
+ * · 学生与校友按 `cohort`（年级）从高到低分组；空分组会自动隐藏。
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import PersonCard from '../components/PersonCard.astro';
+import PersonChip from '../components/PersonChip.astro';
+import DirectorProfile from '../components/DirectorProfile.astro';
+import {
+  faculty,
+  phdStudents,
+  masterStudents,
+  alumniPhd,
+  alumniMaster,
+  groupByCohort,
+} from '../data/people';
+import { ui, t, localizePath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const pageTitle = t(ui.team.pageTitle, lang);
+
+/* 有 bio 的走详情区，其余走网格 */
+const directors = faculty.filter((person) => person.bio && person.bio.length > 0);
+const gridFaculty = faculty.filter((person) => !person.bio || person.bio.length === 0);
+
+const studentGroups = [
+  { key: 'phd' as const, people: phdStudents },
+  { key: 'master' as const, people: masterStudents },
+].filter((group) => group.people.length > 0);
+
+const alumniGroups = [
+  { key: 'alumniPhd' as const, people: alumniPhd },
+  { key: 'alumniMaster' as const, people: alumniMaster },
+].filter((group) => group.people.length > 0);
+
+const cohortLabel = (cohort: string) => (lang === 'zh' ? `${cohort} 级` : `Class of ${cohort}`);
+---
+
+<BaseLayout lang={lang} path="/team/" title={pageTitle}>
+  <header class="page-header">
+    <div class="container">
+      <h1>{pageTitle}</h1>
+      <ul class="breadcrumb-nav">
+        <li><a href={localizePath('/', lang)}>{t(ui.common.breadcrumbHome, lang)}</a></li>
+        <li aria-current="page">{pageTitle}</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ─────────────────────── 教师 ─────────────────────── -->
+  {faculty.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="reveal">
+          <SectionHeader
+            eyebrow={ui.team.eyebrow}
+            heading={t(ui.team.groups.faculty, lang)}
+            intro={ui.team.intro}
+            lang={lang}
+          />
+        </div>
+
+        {directors.map((person, index) => (
+          <div class="reveal director-wrap" data-delay={String(index + 1)}>
+            <DirectorProfile person={person} lang={lang} />
+          </div>
+        ))}
+
+        {gridFaculty.length > 0 && (
+          <div class="row g-4">
+            {gridFaculty.map((person, index) => (
+              <div class="col-xl-3 col-lg-4 col-md-6 reveal" data-delay={String((index % 4) + 1)}>
+                <PersonCard person={person} lang={lang} />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- ─────────────────────── 在读学生 ─────────────────────── -->
+  {studentGroups.length > 0 && (
+    <section class="section bg-soft">
+      <div class="container">
+        <div class="reveal">
+          <SectionHeader heading={t(ui.team.groups.students, lang)} lang={lang} />
+        </div>
+
+        {studentGroups.map((group, groupIndex) => (
+          <div class="people-group reveal" data-delay={String(groupIndex + 1)}>
+            <h3 class="people-group__title">{t(ui.team.groups[group.key], lang)}</h3>
+
+            {groupByCohort(group.people).map(({ cohort, people }) => (
+              <div class="cohort">
+                {cohort && <p class="cohort__label">{cohortLabel(cohort)}</p>}
+                <ul class="person-chips">
+                  {people.map((person) => (
+                    <PersonChip person={person} lang={lang} />
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ─────────────────────── 毕业校友 ─────────────────────── -->
+  {alumniGroups.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="reveal">
+          <SectionHeader heading={t(ui.team.groups.alumni, lang)} lang={lang} />
+        </div>
+
+        {alumniGroups.map((group, groupIndex) => (
+          <div class="people-group reveal" data-delay={String(groupIndex + 1)}>
+            <h3 class="people-group__title">{t(ui.team.groups[group.key], lang)}</h3>
+
+            {groupByCohort(group.people).map(({ cohort, people }) => (
+              <div class="cohort">
+                {cohort && <p class="cohort__label">{cohortLabel(cohort)}</p>}
+                <ul class="person-chips">
+                  {people.map((person) => (
+                    <PersonChip person={person} lang={lang} />
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .director-wrap + .director-wrap {
+    margin-top: 1.5rem;
+  }
+
+  .people-group + .people-group {
+    margin-top: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  }
+
+  .people-group__title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    padding-left: 0.85rem;
+    border-left: 4px solid var(--primary);
+    line-height: 1.3;
+  }
+
+  /* 年级小标题：比分类标题轻一档 */
+  .cohort + .cohort {
+    margin-top: 1.1rem;
+  }
+
+  .cohort__label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+</style>

@@ -1,0 +1,138 @@
+---
+/**
+ * 社交分享预览图（1200×630）的渲染页 —— 不是给访客看的页面。
+ *
+ * 为什么做成一个页面而不是一张静态图片？
+ * 因为分享图上有实验室名称和 slogan，一旦改名就得重做；做成页面后任何人
+ * 都能重新生成：打开 /og-card/ ，把浏览器窗口设成 1200×630，截图另存为
+ * public/og-image.png 即可。这样分享图不会变成一张没人会改的陈旧图片。
+ *
+ * 加了 noindex，也不会出现在导航和 sitemap 里。
+ */
+import '@fontsource/nunito/latin-400.css';
+import '@fontsource/nunito/latin-600.css';
+import '@fontsource/nunito/latin-700.css';
+import '@fontsource/nunito/latin-800.css';
+
+import { site } from '../config/site';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>OG card · {site.nameZh}</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      html, body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+
+      body {
+        font-family: 'Nunito', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+        background: #0e1f38;
+        color: #ffffff;
+        position: relative;
+        isolation: isolate;
+      }
+
+      /* 「多维之间」的斜向网格 + 品牌蓝光晕 */
+      body::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-image:
+          repeating-linear-gradient(60deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 84px),
+          repeating-linear-gradient(-60deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 84px);
+      }
+
+      body::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: radial-gradient(58% 62% at 26% 44%, rgba(46, 155, 214, 0.28), transparent 72%);
+      }
+
+      .card {
+        display: flex;
+        align-items: center;
+        gap: 76px;
+        height: 100%;
+        padding: 0 84px;
+      }
+
+      .mark { width: 232px; height: auto; flex-shrink: 0; }
+
+      .copy { display: flex; flex-direction: column; }
+
+      .name-zh {
+        font-size: 62px;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 1.2;
+      }
+
+      .slogan-zh {
+        margin-top: 12px;
+        font-size: 34px;
+        font-weight: 700;
+        color: #2e9bd6;
+        letter-spacing: 0.02em;
+      }
+
+      .rule {
+        width: 72px;
+        height: 4px;
+        border-radius: 2px;
+        background: #2e9bd6;
+        margin: 34px 0 30px;
+      }
+
+      .name-en {
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: -0.005em;
+      }
+
+      .slogan-en {
+        margin-top: 8px;
+        font-size: 24px;
+        font-weight: 600;
+        color: #9fb8d4;
+      }
+
+      .affiliation {
+        margin-top: 40px;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(241, 248, 255, 0.42);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card">
+      <img class="mark" src={site.assets.logo} alt="" />
+
+      <div class="copy">
+        <p class="name-zh">{site.nameZh}</p>
+        <p class="slogan-zh">{site.sloganZh}</p>
+
+        <div class="rule"></div>
+
+        <p class="name-en">{site.nameEn}</p>
+        <p class="slogan-en">{site.sloganEn}</p>
+
+        <p class="affiliation">{site.affiliationZh}</p>
+      </div>
+    </div>
+  </body>
+</html>

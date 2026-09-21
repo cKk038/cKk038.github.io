@@ -1,0 +1,84 @@
+---
+/**
+ * 顶部导航栏
+ *
+ * 行为：默认透明悬浮在深色 Hero 上；页面滚动超过阈值后加上 .is-scrolled，
+ *       变成深色实底并降低高度（由 BaseLayout 里的一小段原生 JS 驱动）。
+ * 移动端：汉堡按钮展开折叠菜单（纯 CSS grid-template-rows 过渡，无 Bootstrap JS）。
+ */
+import { site, navItems } from '../config/site';
+import { ui, t, localizePath, stripLang, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  /** 与语言无关的当前路径，例如 '/team/' */
+  path: string;
+}
+
+const { lang, path } = Astro.props;
+
+const otherLang: Lang = lang === 'zh' ? 'en' : 'zh';
+const switchHref = localizePath(path, otherLang);
+
+/* 品牌文字：当前语言显示主标题，另一语言显示副标题（中英同框） */
+const brandMain = lang === 'zh' ? site.nameZh : site.nameEn;
+const brandSub = lang === 'zh' ? site.nameEn : site.nameZh;
+---
+
+<nav class="site-navbar" id="siteNavbar" aria-label={lang === 'zh' ? '主导航' : 'Main navigation'}>
+  <div class="container">
+    <div class="navbar-inner">
+      <a class="navbar-brand" href={localizePath('/', lang)}>
+        {site.assets.logo && (
+          <img src={site.assets.logo} alt={`${brandMain} logo`} width="52" height="52" decoding="async" />
+        )}
+        {!site.assets.logoIncludesName && (
+          <span class="brand-text">
+            <span class="brand-text__name">
+              {/* 英文全称 30 个字符，在 375px 上必然被截断，窄屏换成简称 */}
+              <span class="brand-name--full">{brandMain}</span>
+              <span class="brand-name--abbr">{site.abbr}</span>
+            </span>
+            <span class="brand-text__sub">{brandSub}</span>
+          </span>
+        )}
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        {navItems.map((item) => {
+          const href = localizePath(item.href, lang);
+          const isCurrent = stripLang(path).replace(/\/$/, '') === item.href.replace(/\/$/, '');
+          return (
+            <li>
+              <a href={href} aria-current={isCurrent ? 'page' : undefined}>
+                {t(ui.nav[item.key], lang)}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <div class="nav-actions">
+        <a class="lang-switch" href={switchHref} title={t(ui.common.languageSwitch, lang)} hreflang={otherLang}>
+          <i class="bi bi-translate" aria-hidden="true"></i>
+          <span>{otherLang === 'en' ? 'EN' : '中文'}</span>
+        </a>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="navLinks"
+          aria-label={t(ui.common.openMenu, lang)}
+        >
+          <i class="bi bi-list" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* 导航栏的全部样式在 src/styles/global.css（.site-navbar 一节），
+     这里不写 scoped 样式，避免与全局设计令牌打架。 */
+</style>

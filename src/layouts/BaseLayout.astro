@@ -1,0 +1,327 @@
+---
+/**
+ * 全站基础布局
+ *
+ * 负责：
+ *   · <head> 里的 SEO / Open Graph / canonical / hreflang（中英互指）
+ *   · 样式与字体的引入顺序（Bootstrap → 图标 → 自托管字体 → 项目全局样式）
+ *   · 导航栏 / 页脚 / 回到顶部 的外壳
+ *   · 全部前端交互（约 70 行原生 JS，替代参考站点的 jQuery + WOW + CounterUp 四件套）
+ */
+import '@fontsource/nunito/latin-400.css';
+import '@fontsource/nunito/latin-500.css';
+import '@fontsource/nunito/latin-600.css';
+import '@fontsource/nunito/latin-700.css';
+import '@fontsource/nunito/latin-800.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import '../styles/global.css';
+
+import { site } from '../config/site';
+import { ui, t, localizePath, type Lang } from '../i18n/ui';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+
+interface Props {
+  lang: Lang;
+  /** 与语言无关的路径，用于 canonical / hreflang / 导航高亮，例如 '/team/' */
+  path: string;
+  /** 页面标题（已本地化），首页传空字符串 */
+  title?: string;
+  description?: string;
+  isHome?: boolean;
+}
+
+const { lang, path, title = '', description, isHome = false } = Astro.props;
+
+const brandName = lang === 'zh' ? site.nameZh : site.nameEn;
+const slogan = lang === 'zh' ? site.sloganZh : site.sloganEn;
+
+const pageTitle = isHome ? `${brandName} · ${slogan}` : `${title} · ${brandName}`;
+const metaDescription = description ?? t(ui.siteTagline, lang);
+
+/* 绝对 URL：canonical 与 OG 必须是绝对地址 */
+const canonical = new URL(localizePath(path, lang), Astro.site).href;
+const alternateZh = new URL(localizePath(path, 'zh'), Astro.site).href;
+const alternateEn = new URL(localizePath(path, 'en'), Astro.site).href;
+const ogImage = new URL(site.assets.ogImage, Astro.site).href;
+
+const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta name="author" content={brandName} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- 中英互指，帮搜索引擎区分两个语言版本 -->
+    <link rel="alternate" hreflang="zh-CN" href={alternateZh} />
+    <link rel="alternate" hreflang="en" href={alternateEn} />
+    <link rel="alternate" hreflang="x-default" href={alternateZh} />
+
+    <!-- 社交分享 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={brandName} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'zh' ? 'zh_CN' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'zh' ? 'en_US' : 'zh_CN'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content="#0E1F38" />
+
+    <link rel="icon" href={site.assets.favicon} type="image/png" sizes="256x256" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+
+    <!-- theme-color 与浏览器地址栏一致，移动端地址栏变深色 -->
+
+    <!-- 在样式表之前就打开「JS 已接管」开关：
+         · .reveal 元素从首帧起就是隐藏的，不会先闪一下再动
+         · 脚本出任何问题都有 body 末尾的内联兜底 -->
+    <script is:inline>
+      document.documentElement.classList.add('js-reveal');
+    </script>
+
+    <!-- 禁用 JS 时的兜底：导航栏必须是深色实底，否则链接会看不清 -->
+    <noscript>
+      <style>
+        .site-navbar { background: #0e1f38; }
+        .js-reveal .reveal { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
+  </head>
+
+  <body data-lang={lang}>
+    <a class="skip-link" href="#main">{lang === 'zh' ? '跳到主要内容' : 'Skip to main content'}</a>
+
+    <Navbar lang={lang} path={path} />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+    <BackToTop lang={lang} />
+
+    <script>
+      /* ─────────────────────────────────────────────────────────────
+         全站交互。原生 JS，无任何依赖。
+         ───────────────────────────────────────────────────────────── */
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* 1. 导航栏滚动态 + 回到顶部按钮显隐 */
+      const navbar = document.getElementById('siteNavbar');
+      const backToTop = document.getElementById('backToTop');
+
+      const syncScrollUI = () => {
+        const y = window.scrollY;
+        navbar?.classList.toggle('is-scrolled', y > 24);
+        backToTop?.classList.toggle('is-visible', y > window.innerHeight * 0.6);
+      };
+
+      syncScrollUI();
+      window.addEventListener('scroll', syncScrollUI, { passive: true });
+      window.addEventListener('resize', syncScrollUI, { passive: true });
+
+      /* 2. 移动端汉堡菜单 */
+      const navToggle = document.getElementById('navToggle');
+      const setMenuOpen = (open: boolean) => {
+        if (!navbar || !navToggle) return;
+        navbar.classList.toggle('is-open', open);
+        navToggle.setAttribute('aria-expanded', String(open));
+        const icon = navToggle.querySelector('i');
+        if (icon) icon.className = open ? 'bi bi-x-lg' : 'bi bi-list';
+      };
+
+      navToggle?.addEventListener('click', () => {
+        setMenuOpen(!navbar?.classList.contains('is-open'));
+      });
+
+      /* 点击菜单里的链接后收起；按 Esc 也收起 */
+      document.querySelectorAll('#navLinks a').forEach((link) => {
+        link.addEventListener('click', () => setMenuOpen(false));
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setMenuOpen(false);
+      });
+
+      /* 视口拉宽到桌面尺寸时，把移动端菜单状态清掉 */
+      window.matchMedia('(min-width: 992px)').addEventListener('change', (e) => {
+        if (e.matches) setMenuOpen(false);
+      });
+
+      /* 3. 回到顶部 */
+      backToTop?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+      });
+
+      /* 4+5. 滚动揭示（替代 WOW.js）与数字滚动（替代 CounterUp）
+         ------------------------------------------------------------------
+         两个刻意的取舍：
+
+         (a) 不用 IntersectionObserver。本站每页的 .reveal 元素只有一二十个，
+             遍历算一遍 getBoundingClientRect 的开销可以忽略；换来的是在任何环境下
+             都可靠 —— 后台标签页、无头渲染、预览抓取、打印等场景下
+             IntersectionObserver 可能长期不回调，正文就会被永久藏在 opacity: 0。
+
+         (b) 节流也不用 requestAnimationFrame。后台标签页 / 未参与合成的页面里
+             rAF 会被暂停，一旦把「注册监听器」「首次点亮」放进 rAF 回调，
+             整个动画就永远不会启动。这里改用时间戳节流（约 20Hz），必定执行。
+
+         再加上 CSS 层「元素默认可见、只有 <html class="js-reveal"> 时才隐藏」，
+         以及 body 末尾的内联兜底 —— 正文在任何情况下都不会因为动画而看不见。 */
+      const revealEls = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
+      const counters = Array.from(document.querySelectorAll<HTMLElement>('[data-count-to]'));
+
+      const animateCount = (el: HTMLElement) => {
+        const target = Number(el.dataset.countTo ?? '0');
+        const suffix = el.dataset.countSuffix ?? '';
+        if (!Number.isFinite(target)) return;
+
+        const finish = () => {
+          el.textContent = `${target}${suffix}`;
+        };
+
+        const duration = 1500;
+        const started = performance.now();
+        let settled = false;
+
+        const step = (now: number) => {
+          if (settled) return;
+          const progress = Math.min(1, (now - started) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+          el.textContent = `${Math.round(target * eased)}${suffix}`;
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            settled = true;
+          }
+        };
+
+        el.textContent = `0${suffix}`;
+        requestAnimationFrame(step);
+
+        /* 渲染时钟被暂停时 rAF 不推进，数字会卡在 0。setTimeout 不受影响，
+           1.6 秒后直接落终值（动画本身 1.5 秒，所以正常情况下这个兜底是空操作）。 */
+        window.setTimeout(() => {
+          settled = true;
+          finish();
+        }, 1600);
+      };
+
+      const reveal = (el: HTMLElement) => {
+        if (el.dataset.revealed === '1') return;
+        el.dataset.revealed = '1';
+        el.classList.add('is-visible');
+
+        /* 硬兜底：渲染时钟被暂停时 CSS transition 不会推进，元素会卡在
+           opacity: 0。setTimeout 不受渲染时钟影响，1.5 秒后把终态钉死。
+           正常播放动画时（700ms 过渡 + 最多 540ms 延迟）这个类是无感的。 */
+        window.setTimeout(() => el.classList.add('is-settled'), 1500);
+      };
+
+      const scan = () => {
+        /* 只判断「元素顶部是否已经越过视口 94% 这条线」。
+           这一个条件同时覆盖两种情况：
+             · 元素在视口内        → 揭示（正常的滚动进场）
+             · 元素已经被滚到上方   → 也揭示（否则从下方滚回去时会迟到地淡入，很怪）
+           还在视口下方的元素 rect.top 大于视口高度，自然不会被误揭示。 */
+        const revealLimit = window.innerHeight * 0.94;
+        const countLimit = window.innerHeight * 0.95;
+
+        /* 94% 这条线会在页面末尾留下一个约 6% 视口高的死角：滚到最底部时，
+           最后几个元素的顶部可能永远落不到这条线以上。到底了就全部点亮。 */
+        const atBottom =
+          window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+
+        for (const el of revealEls) {
+          if (el.classList.contains('is-visible')) continue;
+          if (atBottom || el.getBoundingClientRect().top < revealLimit) reveal(el);
+        }
+
+        for (const el of counters) {
+          if (el.dataset.counted === '1') continue;
+          if (atBottom || el.getBoundingClientRect().top < countLimit) {
+            el.dataset.counted = '1';
+            animateCount(el);
+          }
+        }
+      };
+
+      if (prefersReduced) {
+        /* 用户要求减少动效：直接给最终状态，一个动画都不播 */
+        revealEls.forEach((el) => {
+          el.dataset.revealed = '1';
+          el.classList.add('is-visible', 'is-settled');
+        });
+      } else {
+        let lastScan = 0;
+
+        /* 时间戳节流，不依赖 rAF */
+        const requestScan = () => {
+          const now = performance.now();
+          if (now - lastScan < 45) return;
+          lastScan = now;
+          scan();
+        };
+
+        /* 监听器立刻注册，绝不放进 rAF */
+        window.addEventListener('scroll', requestScan, { passive: true });
+        window.addEventListener('resize', requestScan, { passive: true });
+
+        /* 首屏元素：rAF 走通了动画就完整播出来；万一 rAF 被暂停，
+           120ms 的定时器兜底点亮，绝不会停在隐藏状态。 */
+        let seeded = false;
+        const seed = () => {
+          if (seeded) return;
+          seeded = true;
+          scan();
+        };
+
+        requestAnimationFrame(() => requestAnimationFrame(seed));
+        window.setTimeout(seed, 120);
+
+        /* 低频轮询兜底。
+           scroll 事件的派发依赖渲染流水线，在后台标签页、无头渲染、预览抓取等
+           场景下可能迟迟不来，这时光靠 scroll 监听会让内容停在隐藏状态。
+           轮询保证「任何进入视口的元素一定会被点亮」，全部点亮后立刻停止，
+           最多轮询 15 秒（每 400ms 二十来次 getBoundingClientRect，开销可忽略）。 */
+        const pollUntilDone = () => {
+          const deadline = performance.now() + 15000;
+          const id = window.setInterval(() => {
+            scan();
+            const allDone = revealEls.every((el) => el.classList.contains('is-visible'));
+            if (allDone || performance.now() > deadline) window.clearInterval(id);
+          }, 400);
+        };
+
+        pollUntilDone();
+      }
+    </script>
+
+    <!--
+      最后一道兜底，故意写成内联脚本、不依赖打包产物：
+      如果 2.5 秒后一个 .reveal 都没被点亮（脚本加载失败、观察器被浏览器冻结、
+      无头渲染 / 预览抓取等），就直接撤销 js-reveal，让全部内容立刻可见。
+      换句话说，本站的正文在任何情况下都不会因为动画而看不见。
+    -->
+    <script is:inline>
+      window.setTimeout(function () {
+        if (document.querySelector('.reveal.is-visible')) return;
+        document.documentElement.classList.remove('js-reveal');
+      }, 2500);
+    </script>
+  </body>
+</html>

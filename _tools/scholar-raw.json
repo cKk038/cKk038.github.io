@@ -1,0 +1,1218 @@
+[
+ {
+  "authors": "Z Wei, X Yang, N Wang, X Gao",
+  "cited": "265",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:mB3voiENLucC",
+  "title": "Syncretic modality collaborative learning for visible infrared person re-identification",
+  "venue": "2021 IEEE/CVF International Conference on Computer Vision (ICCV), 225-234",
+  "year": "2021"
+ },
+ {
+  "authors": "H Li, N Wang, X Ding, X Yang, X Gao",
+  "cited": "260",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:mVmsd5A6BfQC",
+  "title": "Adaptively learning facial expression representation via cf labels and distillation",
+  "venue": "IEEE Transactions on Image Processing 30, 2016-2028",
+  "year": "2021"
+ },
+ {
+  "authors": "H Guo, X Yang, N Wang, X Gao",
+  "cited": "257",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:aqlVkmm33-oC",
+  "title": "A CenterNet++ model for ship detection in SAR images",
+  "venue": "Pattern Recognition 112, 107787",
+  "year": "2021"
+ },
+ {
+  "authors": "X Yang, X Gao, D Tao, X Li, J Li",
+  "cited": "172",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:u5HHmVD_uO8C",
+  "title": "An efficient MRF embedded level set method for image segmentation",
+  "venue": "IEEE transactions on image processing 24 (1), 9-21",
+  "year": "2014"
+ },
+ {
+  "authors": "X Yang, X Zhang, N Wang, X Gao",
+  "cited": "164",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:R3hNpaxXUhUC",
+  "title": "A robust one-stage detector for multiscale ship detection with complex background in massive SAR images",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 60, 1-12",
+  "year": "2021"
+ },
+ {
+  "authors": "H Li, N Wang, X Yang, X Wang, X Gao",
+  "cited": "155",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:bEWYMUwI8FkC",
+  "title": "Towards semi-supervised deep facial expression recognition with an adaptive confidence margin",
+  "venue": "2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR …",
+  "year": "2022"
+ },
+ {
+  "authors": "X Yang, J Zhao, Z Wei, N Wang, X Gao",
+  "cited": "145",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:-f6ydRqryjwC",
+  "title": "SAR-to-optical image translation based on improved CGAN",
+  "venue": "Pattern Recognition 121, 108208",
+  "year": "2022"
+ },
+ {
+  "authors": "Z Wei, X Yang, N Wang, X Gao",
+  "cited": "143",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:QIV2ME_5wuYC",
+  "title": "Flexible body partition-based adversarial learning for visible infrared person re-identification",
+  "venue": "IEEE Transactions on Neural Networks and Learning Systems 33 (9), 4676-4687",
+  "year": "2021"
+ },
+ {
+  "authors": "H Guo, X Yang, N Wang, B Song, X Gao",
+  "cited": "129",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:kNdYIx-mwKoC",
+  "title": "A rotational libra R-CNN method for ship detection",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 58 (8), 5772-5781",
+  "year": "2020"
+ },
+ {
+  "authors": "Y Huang, L Zhang, J Li, Z Chen, X Yang",
+  "cited": "109",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:4TOpqqG69KYC",
+  "title": "Reweighted tensor factorization method for SAR narrowband and wideband interference mitigation using smoothing multiview tensor model",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 58 (5), 3298-3313",
+  "year": "2019"
+ },
+ {
+  "authors": "D Yang, G Liao, S Zhu, X Yang, X Zhang",
+  "cited": "91",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:9yKSN-GCB0IC",
+  "title": "SAR imaging with undersampled data via matrix completion",
+  "venue": "IEEE Geoscience and Remote Sensing Letters 11 (9), 1539-1543",
+  "year": "2014"
+ },
+ {
+  "authors": "X Yang, T Wu, L Zhang, D Yang, N Wang, B Song, X Gao",
+  "cited": "82",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:LkGwnXOMwfcC",
+  "title": "CNN with spatio-temporal information for fast suspicious object detection and recognition in THz security images",
+  "venue": "Signal Processing 160, 202-214",
+  "year": "2019"
+ },
+ {
+  "authors": "X Yang, X Gao, D Tao, X Li",
+  "cited": "82",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:u-x6o8ySG0sC",
+  "title": "Improving level set method for fast auroral oval segmentation",
+  "venue": "IEEE transactions on Image Processing 23 (7), 2854-2865",
+  "year": "2014"
+ },
+ {
+  "authors": "X Jiang, N Wang, J Xin, X Xia, X Yang, X Gao",
+  "cited": "80",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:hFOr9nPyWt4C",
+  "title": "Learning lightweight super-resolution networks with weight pruning",
+  "venue": "Neural Networks 144, 21-32",
+  "year": "2021"
+ },
+ {
+  "authors": "D Yang, X Yang, G Liao, S Zhu",
+  "cited": "79",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:qjMakFHDy7sC",
+  "title": "Strong clutter suppression via RPCA in multichannel SAR/GMTI system",
+  "venue": "IEEE geoscience and remote sensing letters 12 (11), 2237-2241",
+  "year": "2015"
+ },
+ {
+  "authors": "Z Wei, X Yang, N Wang, X Gao",
+  "cited": "73",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:35N4QoGY0k4C",
+  "title": "Dual-adversarial representation disentanglement for visible infrared person re-identification",
+  "venue": "IEEE Transactions on Information Forensics and Security 19, 2186-2200",
+  "year": "2023"
+ },
+ {
+  "authors": "X Yang, Z Wang, J Zhao, D Yang",
+  "cited": "69",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:_Qo2XoVZTnwC",
+  "title": "FG-GAN: A fine-grained generative adversarial network for unsupervised SAR-to-optical image translation",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 60, 1-11",
+  "year": "2022"
+ },
+ {
+  "authors": "X Yang, W Dong, M Li, Z Wei, N Wang, X Gao",
+  "cited": "67",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:pqnbT2bcN3wC",
+  "title": "Cooperative separation of modality shared-specific features for visible-infrared person re-identification",
+  "venue": "IEEE Transactions on Multimedia 26, 8172-8183",
+  "year": "2024"
+ },
+ {
+  "authors": "Y Yu, X Yang, J Li, X Gao",
+  "cited": "67",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:Wp0gIr-vW9MC",
+  "title": "A cascade rotated anchor-aided detector for ship detection in remote sensing images",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 60, 1-14",
+  "year": "2020"
+ },
+ {
+  "authors": "X Jiang, N Wang, J Xin, K Li, X Yang, X Gao",
+  "cited": "65",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:ZeXyd9-uunAC",
+  "title": "Training binary neural network without batch normalization for image super-resolution",
+  "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 35 (2), 1700-1707",
+  "year": "2021"
+ },
+ {
+  "authors": "H Li, N Wang, X Yang, X Gao",
+  "cited": "63",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:maZDTaKrznsC",
+  "title": "Crs-cont: a well-trained general encoder for facial expression analysis",
+  "venue": "IEEE Transactions on Image Processing 31, 4637-4650",
+  "year": "2022"
+ },
+ {
+  "authors": "X Yang, X Nan, B Song",
+  "cited": "60",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:MXK_kJrjxJIC",
+  "title": "D2N4: A discriminative deep nearest neighbor neural network for few-shot space target recognition",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 58 (5), 3667-3676",
+  "year": "2020"
+ },
+ {
+  "authors": "Y Yu, X Yang, J Li, X Gao",
+  "cited": "59",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:RHpTSmoSYBkC",
+  "title": "Object detection for aerial images with feature enhancement and soft label assignment",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 60, 1-16",
+  "year": "2022"
+ },
+ {
+  "authors": "Y Huang, L Zhang, X Yang, Z Chen, J Liu, J Li, W Hong",
+  "cited": "54",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:L8Ckcad2t8MC",
+  "title": "An efficient graph-based algorithm for time-varying narrowband interference suppression on SAR system",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 59 (10), 8418-8432",
+  "year": "2021"
+ },
+ {
+  "authors": "X Yang, X Gao, J Li, B Han",
+  "cited": "53",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:d1gkVwhDpl0C",
+  "title": "A shape-initialized and intensity-adaptive level set method for auroral oval segmentation",
+  "venue": "Information Sciences 277, 794-807",
+  "year": "2014"
+ },
+ {
+  "authors": "X Yang, J Zhang, C Chen, D Yang",
+  "cited": "50",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:k_IJM867U9cC",
+  "title": "An efficient and lightweight CNN model with soft quantification for ship detection in SAR images",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 60, 1-13",
+  "year": "2022"
+ },
+ {
+  "authors": "Y Tang, X Yang, N Wang, B Song, X Gao",
+  "cited": "47",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:_kc_bZDykSQC",
+  "title": "CGAN-TM: A novel domain-to-domain transferring method for person re-identification",
+  "venue": "IEEE Transactions on Image Processing 29, 5641-5651",
+  "year": "2020"
+ },
+ {
+  "authors": "H Li, N Wang, X Yang, X Wang, X Gao",
+  "cited": "45",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:ns9cj8rnVeAC",
+  "title": "Unconstrained facial expression recognition with no-reference de-elements learning",
+  "venue": "IEEE Transactions on Affective Computing 15 (1), 173-185",
+  "year": "2023"
+ },
+ {
+  "authors": "X Yang, L Liu, N Wang, X Gao",
+  "cited": "45",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:qUcmZB5y_30C",
+  "title": "A two-stream dynamic pyramid representation model for video-based person re-identification",
+  "venue": "IEEE Transactions on Image Processing 30, 6266-6276",
+  "year": "2021"
+ },
+ {
+  "authors": "H Li, N Wang, Y Yu, X Yang, X Gao",
+  "cited": "45",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:4DMP91E08xMC",
+  "title": "LBAN-IL: A novel method of high discriminative representation for facial expression recognition",
+  "venue": "Neurocomputing 432, 159-169",
+  "year": "2021"
+ },
+ {
+  "authors": "X Yang, S Zhang, S Duan, W Yang",
+  "cited": "43",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:vV6vV6tmYwMC",
+  "title": "An effective and lightweight hybrid network for object detection in remote sensing images",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 62, 1-11",
+  "year": "2023"
+ },
+ {
+  "authors": "X Yang, Y Wang, N Wang, X Gao",
+  "cited": "41",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:TQgYirikUcIC",
+  "title": "An enhanced SiamMask network for coastal ship tracking",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 60, 1-11",
+  "year": "2021"
+ },
+ {
+  "authors": "Z Wei, X Yang, N Wang, X Gao",
+  "cited": "39",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:M3NEmzRMIkIC",
+  "title": "RBDF: Reciprocal bidirectional framework for visible infrared person reidentification",
+  "venue": "IEEE Transactions on Cybernetics 52 (10), 10988-10998",
+  "year": "2022"
+ },
+ {
+  "authors": "X Yang, T Wu, N Wang, Y Huang, B Song, X Gao",
+  "cited": "38",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:M3ejUd6NZC8C",
+  "title": "HCNN-PSI: A hybrid CNN with partial semantic information for space target recognition",
+  "venue": "Pattern Recognition 108, 107531",
+  "year": "2020"
+ },
+ {
+  "authors": "Y Tang, X Yang, N Wang, B Song, X Gao",
+  "cited": "34",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:5nxA0vEk-isC",
+  "title": "Person re-identification with feature pyramid optimization and gradual background suppression",
+  "venue": "Neural Networks 124, 223-232",
+  "year": "2020"
+ },
+ {
+  "authors": "X Yang, X Gao, B Song, D Yang",
+  "cited": "34",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:WF5omc3nYNoC",
+  "title": "Aurora image search with contextual CNN feature",
+  "venue": "Neurocomputing 281, 67-77",
+  "year": "2018"
+ },
+ {
+  "authors": "X Yang, N Wang, B Song, X Gao",
+  "cited": "32",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:UebtZRa9Y70C",
+  "title": "BoSR: A CNN-based aurora image retrieval method",
+  "venue": "Neural Networks 116, 188-197",
+  "year": "2019"
+ },
+ {
+  "authors": "X Yang, X Gao, D Tao, X Li, B Han, J Li",
+  "cited": "32",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:2osOgNQ5qMEC",
+  "title": "Shape-constrained sparse and low-rank decomposition for auroral substorm detection",
+  "venue": "IEEE transactions on neural networks and learning systems 27 (1), 32-46",
+  "year": "2015"
+ },
+ {
+  "authors": "X Yang, Z Zeng, D Yang",
+  "cited": "29",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:ldfaerwXgEUC",
+  "title": "Adaptive mid-level feature attention learning for fine-grained ship classification in optical remote sensing images",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 62, 1-10",
+  "year": "2024"
+ },
+ {
+  "authors": "X Yang, X Wang, N Wang, X Gao",
+  "cited": "29",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:e5wmG9Sq2KIC",
+  "title": "SRDN: A unified super-resolution and motion deblurring network for space image restoration",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 60, 1-11",
+  "year": "2021"
+ },
+ {
+  "authors": "X Yang, M Tian, M Li, Z Wei, L Yuan, N Wang, X Gao",
+  "cited": "28",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:70eg2SAEIzsC",
+  "title": "SSRR: Structural semantic representation reconstruction for visible-infrared person re-identification",
+  "venue": "IEEE Transactions on Multimedia 26, 6273-6284",
+  "year": "2023"
+ },
+ {
+  "authors": "X Jiang, N Wang, J Xin, K Li, X Yang, J Li, X Wang, X Gao",
+  "cited": "28",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:HoB7MX3m0LUC",
+  "title": "Fabnet: Frequency-aware binarized network for single image super-resolution",
+  "venue": "IEEE Transactions on Image Processing 32, 6234-6247",
+  "year": "2023"
+ },
+ {
+  "authors": "X Yang, X Gao, Q Tian",
+  "cited": "28",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:UeHWp8X0CEIC",
+  "title": "Polar embedding for aurora image retrieval",
+  "venue": "IEEE Transactions on Image Processing 24 (11), 3332-3344",
+  "year": "2015"
+ },
+ {
+  "authors": "X Yang, H Liu, N Wang, X Gao",
+  "cited": "27",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:EUQCXRtRnyEC",
+  "title": "Bidirectional modality information interaction for Visible–Infrared Person Re-identification",
+  "venue": "Pattern Recognition 161, 111301",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, S Zhang, W Yang",
+  "cited": "27",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:g5m5HwL7SMYC",
+  "title": "Two-way assistant: A knowledge distillation object detection method for remote sensing images",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 62, 1-10",
+  "year": "2024"
+ },
+ {
+  "authors": "J Xu, B Song, X Yang, X Nan",
+  "cited": "27",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:qxL8FJ1GzNcC",
+  "title": "An improved deep keypoint detection network for space targets pose estimation",
+  "venue": "Remote Sensing 12 (23), 3857",
+  "year": "2020"
+ },
+ {
+  "authors": "S Duan, X Yang, N Wang, X Gao",
+  "cited": "26",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:SP6oXDckpogC",
+  "title": "Lightweight RGB-D salient object detection from a speed-accuracy tradeoff perspective",
+  "venue": "IEEE Transactions on Image Processing 34, 2529-2543",
+  "year": "2025"
+ },
+ {
+  "authors": "L Liu, X Yang, N Wang, X Gao",
+  "cited": "26",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:YFjsv_pBGBYC",
+  "title": "Frequency information disentanglement network for video-based person re-identification",
+  "venue": "IEEE Transactions on Image Processing 32, 4287-4298",
+  "year": "2023"
+ },
+ {
+  "authors": "T Wu, X Yang, B Song, N Wang, X Gao, L Kuang, X Nan, Y Chen, D Yang",
+  "cited": "24",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:8k81kl-MbHgC",
+  "title": "T-SCNN: A two-stage convolutional neural network for space target recognition",
+  "venue": "IGARSS 2019-2019 IEEE International Geoscience and Remote Sensing Symposium …",
+  "year": "2019"
+ },
+ {
+  "authors": "S Duan, X Yang, N Wang",
+  "cited": "23",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:D_sINldO8mEC",
+  "title": "Multi-label prototype visual spatial search for weakly supervised semantic segmentation",
+  "venue": "2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR …",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, Z Wei, N Wang, B Song, X Gao",
+  "cited": "23",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:ULOm3_A8WrAC",
+  "title": "A novel deformable body partition model for MMW suspicious object detection and dynamic tracking",
+  "venue": "Signal Processing 174, 107627",
+  "year": "2020"
+ },
+ {
+  "authors": "X Yang, X Wang, L Liu, N Wang, X Gao",
+  "cited": "22",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:M05iB0D1s5AC",
+  "title": "STFE: A comprehensive video-based person re-identification network based on spatio-temporal feature enhancement",
+  "venue": "IEEE Transactions on Multimedia 26, 7237-7249",
+  "year": "2024"
+ },
+ {
+  "authors": "Z Wei, X Yang, N Wang, B Song, X Gao",
+  "cited": "22",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:YOwf2qJgpHMC",
+  "title": "ABP: Adaptive body partition model for visible infrared person re-identification",
+  "venue": "2020 IEEE International Conference on Multimedia and Expo (ICME), 1-6",
+  "year": "2020"
+ },
+ {
+  "authors": "X Yin, X Yang, L Liu, N Wang, X Gao",
+  "cited": "21",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:2P1L_qKh6hAC",
+  "title": "Point deformable network with enhanced normal embedding for point cloud analysis",
+  "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 38 (7), 6738-6746",
+  "year": "2024"
+ },
+ {
+  "authors": "Z Gong, N Wang, D Cheng, X Jiang, J Xin, X Yang, X Gao",
+  "cited": "21",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:JV2RwH3_ST0C",
+  "title": "Learning deep resonant prior for hyperspectral image super-resolution",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 60, 1-14",
+  "year": "2022"
+ },
+ {
+  "authors": "X Yang, H Guo, N Wang, B Song, X Gao",
+  "cited": "21",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:Zph67rFs4hoC",
+  "title": "A novel symmetry driven Siamese network for THz concealed object verification",
+  "venue": "IEEE Transactions on Image Processing 29, 5447-5456",
+  "year": "2020"
+ },
+ {
+  "authors": "X Yang, D Kong, N Wang, X Gao",
+  "cited": "20",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:nb7KW1ujOQ8C",
+  "title": "Hyperbolic insights with knowledge distillation for cross-domain few-shot learning",
+  "venue": "IEEE Transactions on Image Processing 34, 1921-1933",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, W Dong, D Cheng, N Wang, X Gao",
+  "cited": "20",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:1sJd4Hv_s6UC",
+  "title": "Tienet: A tri-interaction enhancement network for multimodal person reidentification",
+  "venue": "IEEE Transactions on Neural Networks and Learning Systems 36 (6), 9852-9863",
+  "year": "2025"
+ },
+ {
+  "authors": "X Jiang, N Wang, J Xin, K Li, X Yang, J Li, X Gao",
+  "cited": "20",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:blknAaTinKkC",
+  "title": "Toward pixel-level precision for binary super-resolution with mixed binary representation",
+  "venue": "IEEE Transactions on Neural Networks and Learning Systems 35 (3), 3989-4001",
+  "year": "2022"
+ },
+ {
+  "authors": "D Zhou, N Wang, C Peng, Y Yu, X Yang, X Gao",
+  "cited": "20",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:hC7cP41nSMkC",
+  "title": "Towards multi-domain face synthesis via domain-invariant representations and multi-level feature parts",
+  "venue": "IEEE Transactions on Multimedia 24, 3469-3479",
+  "year": "2021"
+ },
+ {
+  "authors": "X Yang, X Yin, N Wang, X Gao",
+  "cited": "18",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:pyW8ca7W8N0C",
+  "title": "Associative graph convolution network for point cloud analysis",
+  "venue": "Pattern Recognition 159, 111152",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, X Gao, B Song, B Han",
+  "cited": "18",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:3fE2CSJIrl8C",
+  "title": "Hierarchical deep embedding for aurora image retrieval",
+  "venue": "IEEE transactions on cybernetics 51 (12), 5773-5785",
+  "year": "2020"
+ },
+ {
+  "authors": "L Liu, N Wang, D Zhou, D Liu, X Yang, X Gao, T Liu",
+  "cited": "16",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:xtRiw3GOFMkC",
+  "title": "Generalizable prompt learning via gradient constrained sharpness-aware minimization",
+  "venue": "IEEE Transactions on Multimedia 27, 1100-1113",
+  "year": "2024"
+ },
+ {
+  "authors": "X Zhang, X Yang, D Yang, F Wang, X Gao",
+  "cited": "16",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:hMod-77fHWUC",
+  "title": "A universal ship detection method with domain-invariant representations",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 60, 1-11",
+  "year": "2022"
+ },
+ {
+  "authors": "L Liu, X Yang, N Wang, X Gao",
+  "cited": "14",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:HDshCWvjkbEC",
+  "title": "Viewing from frequency domain: A DCT-based information enhancement network for video person re-identification",
+  "venue": "Proceedings of the 29th ACM International Conference on Multimedia, 227-235",
+  "year": "2021"
+ },
+ {
+  "authors": "X Jiang, N Wang, J Xin, X Yang, Y Yu, X Gao",
+  "cited": "14",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:KlAtU1dfN6UC",
+  "title": "Image super-resolution via multi-view information fusion networks",
+  "venue": "Neurocomputing 402, 29-37",
+  "year": "2020"
+ },
+ {
+  "authors": "X Yang, X Gao, B Song, N Wang, D Yang",
+  "cited": "14",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:ufrVoPGSRksC",
+  "title": "ASI aurora search: an attempt of intelligent image processing for circular fisheye lens",
+  "venue": "Optics Express 26 (7), 7985-8000",
+  "year": "2018"
+ },
+ {
+  "authors": "Z Wei, X Yang, N Wang, X Gao",
+  "cited": "13",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:ZHo1McVdvXMC",
+  "title": "Semi-supervised learning with heterogeneous distribution consistency for visible infrared person re-identification",
+  "venue": "IEEE Transactions on Image Processing 33, 3880-3892",
+  "year": "2024"
+ },
+ {
+  "authors": "X Yang, X Wang, D Yang",
+  "cited": "13",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:GnPB-g6toBAC",
+  "title": "Improving cross-modal constraints: Text attribute person search with graph attention networks",
+  "venue": "IEEE Transactions on Multimedia 26, 2493-2503",
+  "year": "2023"
+ },
+ {
+  "authors": "C Qi, X Yang, N Wang, X Gao",
+  "cited": "12",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:OU6Ihb5iCvQC",
+  "title": "Granularity-aware hyperbolic representation for text-based person search",
+  "venue": "IEEE Transactions on Information Forensics and Security 20, 5745-5757",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, W Dong, G Zheng, N Wang, X Gao",
+  "cited": "12",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:UxriW0iASnsC",
+  "title": "IDENet: an inter-domain equilibrium network for unsupervised cross-domain person re-identification",
+  "venue": "IEEE Transactions on Image Processing",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, P Li, Q Zhou, N Wang, X Gao",
+  "cited": "11",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:b0M2c_1WBrUC",
+  "title": "Dense information learning based semi-supervised object detection",
+  "venue": "IEEE Transactions on Image Processing 34, 1022-1035",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, M Tian, N Wang, X Gao",
+  "cited": "11",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:rO6llkc54NcC",
+  "title": "Unleashing the feature hierarchy potential: an efficient tri-hybrid person search model",
+  "venue": "IEEE Transactions on Circuits and Systems for Video Technology 34 (11 …",
+  "year": "2024"
+ },
+ {
+  "authors": "X Yang, Z Wang, Z Wei, D Yang",
+  "cited": "11",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:RYcK_YlVTxYC",
+  "title": "Scsp: An unsupervised image-to-image translation network based on semantic cooperative shape perception",
+  "venue": "IEEE Transactions on Multimedia 26, 4950-4960",
+  "year": "2023"
+ },
+ {
+  "authors": "Y Yu, X Yang, J Li, X Gao",
+  "cited": "11",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:J_g5lzvAfSwC",
+  "title": "Task-specific heterogeneous network for object detection in aerial images",
+  "venue": "IEEE transactions on geoscience and remote sensing 61, 1-15",
+  "year": "2023"
+ },
+ {
+  "authors": "H Liu, X Gao, B Han, X Yang",
+  "cited": "11",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:IjCSPb-OGe4C",
+  "title": "An automatic MSRM method with a feedback based on shape information for auroral oval segmentation",
+  "venue": "International Conference on Intelligent Science and Big Data Engineering …",
+  "year": "2013"
+ },
+ {
+  "authors": "Z Sheng, X Yang",
+  "cited": "10",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:fPk4N6BV_jEC",
+  "title": "Information Fusion with Knowledge Distillation for Fine-grained Remote Sensing Object Detection",
+  "venue": "ACM Multimedia",
+  "year": "2024"
+ },
+ {
+  "authors": "Y Tang, X Yang, N Wang, X Jiang, B Song, X Gao",
+  "cited": "10",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:Se3iqnhoufwC",
+  "title": "Person re-identification with gradual background suppression",
+  "venue": "2019 IEEE International Conference on Multimedia and Expo (ICME), 706-711",
+  "year": "2019"
+ },
+ {
+  "authors": "D Yang, G Liao, S Zhu, X Yang",
+  "cited": "10",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:zYLM7Y9cAGgC",
+  "title": "RPCA based moving target detection in strong clutter background",
+  "venue": "2015 IEEE Radar Conference (RadarCon), 1487-1490",
+  "year": "2015"
+ },
+ {
+  "authors": "W Dong, X Yang, D Cheng, N Wang, X Gao",
+  "cited": "9",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:XiSMed-E-HIC",
+  "title": "Escaping modal interactions: An efficient DESANet for multi-modal object re-identification",
+  "venue": "IEEE Transactions on Image Processing",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, S Duan, N Wang, X Gao",
+  "cited": "9",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:cFHS6HbyZ2cC",
+  "title": "Pro2SAM: Mask Prompt to SAM with Grid Points for Weakly Supervised Object Localization",
+  "venue": "ECCV",
+  "year": "2024"
+ },
+ {
+  "authors": "X Yang, M Cao, C Li, H Zhao, D Yang",
+  "cited": "9",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:O3NaXMp0MMsC",
+  "title": "Learning implicit neural representation for satellite object mesh reconstruction",
+  "venue": "Remote Sensing 15 (17), 4163",
+  "year": "2023"
+ },
+ {
+  "authors": "X Yang, X Wang, N Wang, X Gao",
+  "cited": "9",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:BqipwSGYUEgC",
+  "title": "Address the unseen relationships: Attribute correlations in text attribute person search",
+  "venue": "IEEE transactions on neural networks and learning systems 35 (11), 16916-16926",
+  "year": "2023"
+ },
+ {
+  "authors": "S Duan, X Yang, N Wang",
+  "cited": "8",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:eJXPG6dFmWUC",
+  "title": "𝒟ℐℋ-CLIP: Unleashing the Diversity of Multi-Head Self-Attention for Training-Free Open-Vocabulary Semantic Segmentation",
+  "venue": "2025 IEEE/CVF International Conference on Computer Vision (ICCV), 22794-22803",
+  "year": "2025"
+ },
+ {
+  "authors": "L Liu, N Wang, C Chen, D Liu, X Yang, X Gao, T Liu",
+  "cited": "8",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:p2g8aNsByqUC",
+  "title": "Frequency-based comprehensive prompt learning for vision-language models",
+  "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+  "year": "2025"
+ },
+ {
+  "authors": "Y Yang, X Yang, D Yang",
+  "cited": "8",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:uWQEDVKXjbEC",
+  "title": "Unsupervised domain adaptation for SAR ship detection based on multitask decoupling",
+  "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote …",
+  "year": "2025"
+ },
+ {
+  "authors": "D Zhou, H Qu, N Wang, C Peng, Z Ma, X Yang, X Gao",
+  "cited": "8",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:bFI3QPDXJZMC",
+  "title": "Fooling human detectors via robust and visually natural adversarial patches",
+  "venue": "Neurocomputing 616, 128915",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, H Liu, D Cheng, N Wang, X Gao",
+  "cited": "8",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:_xSYboBqXhAC",
+  "title": "Feature-Level Adversarial Attacks and Ranking Disruption for Visible-Infrared Person Re-identification",
+  "venue": "The Thirty-eighth Annual Conference on Neural Information Processing Systems",
+  "year": "2024"
+ },
+ {
+  "authors": "X Yang, J Sun, S Duan, D Cheng",
+  "cited": "7",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:eflP2zaiRacC",
+  "title": "Dual information purification for lightweight SAR object detection",
+  "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 39 (9), 9274-9282",
+  "year": "2025"
+ },
+ {
+  "authors": "D Cheng, Y Lu, L He, S Zhang, X Yang, N Wang, X Gao",
+  "cited": "7",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:dshw04ExmUIC",
+  "title": "Mamba-CL: Optimizing selective state space model in null space for continual learning",
+  "venue": "arXiv preprint arXiv:2411.15469",
+  "year": "2024"
+ },
+ {
+  "authors": "D Kong, X Yang, N Wang, X Gao",
+  "cited": "7",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:f2IySw72cVMC",
+  "title": "Perspectives of calibrated adaptation for few-shot cross-domain classification",
+  "venue": "IEEE Transactions on Circuits and Systems for Video Technology 35 (3), 2410-2421",
+  "year": "2024"
+ },
+ {
+  "authors": "X Yang, D Kong, D Yang, M Wang",
+  "cited": "7",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:3s1wT3WcHBgC",
+  "title": "Domain-aware generalized meta-learning for space target recognition",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 62, 1-12",
+  "year": "2024"
+ },
+ {
+  "authors": "L Liu, N Wang, D Liu, X Yang, X Gao, T Liu",
+  "cited": "7",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:u_35RYKgDlwC",
+  "title": "Towards specific domain prompt learning via improved text label optimization",
+  "venue": "IEEE Transactions on Multimedia 26, 10805-10815",
+  "year": "2024"
+ },
+ {
+  "authors": "杨曦， 李洁， 韩冰， 高新波",
+  "cited": "7",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:Y0pCki6q_DkC",
+  "title": "一种分层小波模型下的极光图像分类算法",
+  "venue": "西安电子科技大学学报, 18-24",
+  "year": "2013"
+ },
+ {
+  "authors": "X Yang, J Wang, S Duan",
+  "cited": "6",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:abG-DnoFyZgC",
+  "title": "Scale-consistent learnable PnP network for space target pose estimation",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 63, 1-12",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, X Gu, X Yin, X Gao",
+  "cited": "6",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:NhqRSupF_l8C",
+  "title": "SA3DIP: Segment Any 3D Instance with Potential 3D Priors",
+  "venue": "The Thirty-eighth Annual Conference on Neural Information Processing Systems",
+  "year": "2024"
+ },
+ {
+  "authors": "X Yang, Q Zhou, Z Wei, H Liu, N Wang, X Gao",
+  "cited": "6",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:zA6iFVUQeVQC",
+  "title": "Elaborate teacher: Improved semi-supervised object detection with rich image exploiting",
+  "venue": "IEEE Transactions on Multimedia 26, 11345-11357",
+  "year": "2024"
+ },
+ {
+  "authors": "X Yang, Y Tang, N Wang, B Song, X Gao",
+  "cited": "6",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:roLk4NBRz8UC",
+  "title": "An end-to-end noise-weakened person re-identification and tracking with adaptive partial information",
+  "venue": "IEEE Access 7, 20984-20995",
+  "year": "2019"
+ },
+ {
+  "authors": "X Yang, H Shi, Z Wang, N Wang, X Gao",
+  "cited": "5",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:KxtntwgDAa4C",
+  "title": "CSHNet: A novel information asymmetric image translation method",
+  "venue": "IEEE Transactions on Circuits and Systems for Video Technology",
+  "year": "2025"
+ },
+ {
+  "authors": "Y Yu, X Yang, J Li, X Gao",
+  "cited": "5",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:NaGl4SEjCO4C",
+  "title": "A refined hybrid network for object detection in aerial images",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 61, 1-15",
+  "year": "2023"
+ },
+ {
+  "authors": "X Yang, D Kong, R Lin, D Yang",
+  "cited": "5",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:RGFaLdJalmkC",
+  "title": "Generalizing spacecraft recognition via diversifying few-shot datasets in a joint trained likelihood",
+  "venue": "Remote Sensing 15 (17), 4321",
+  "year": "2023"
+ },
+ {
+  "authors": "X Yang, H Zhu, H Zhao, D Yang",
+  "cited": "5",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:NMxIlDl6LWMC",
+  "title": "Coastal ship tracking with memory-guided perceptual network",
+  "venue": "Remote Sensing 15 (12), 3150",
+  "year": "2023"
+ },
+ {
+  "authors": "X Yang, N Wang, B Song, X Gao",
+  "cited": "5",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:0EnyYjriUFMC",
+  "title": "Aurora image search with a saliency-weighted region network",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 58 (4), 2630-2643",
+  "year": "2019"
+ },
+ {
+  "authors": "H Li, N Wang, X Yang, X Wang, X Gao",
+  "cited": "4",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:K3LRdlH-MEoC",
+  "title": "An enhanced adaptive confidence margin for semi-supervised facial expression recognition",
+  "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+  "year": "2025"
+ },
+ {
+  "authors": "M Dai, X Yang, W Dong, N Wang",
+  "cited": "4",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:u9iWguZQMMsC",
+  "title": "GAE-Net: A gait-assisted enhancement network for video-based person re-identification",
+  "venue": "Neural Networks, 107946",
+  "year": "2025"
+ },
+ {
+  "authors": "H Zhu, X Yang, N Wang",
+  "cited": "4",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:BrmTIyaxlBUC",
+  "title": "Optimizing label assignment for weakly supervised person search",
+  "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 39 (10), 10941 …",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, D Kong, R Lin, N Wang, X Gao",
+  "cited": "4",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:dfsIfKJdRG4C",
+  "title": "Adapting few-shot classification via in-process defense",
+  "venue": "IEEE Transactions on Image Processing 33, 5232-5245",
+  "year": "2024"
+ },
+ {
+  "authors": "D Yang, J Wang, X Yang",
+  "cited": "4",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:SeFeTyx0c_EC",
+  "title": "3D point cloud shape generation with collaborative learning of generative adversarial network and auto-encoder",
+  "venue": "Remote Sensing 16 (10), 1772",
+  "year": "2024"
+ },
+ {
+  "authors": "L Liu, N Wang, D Zhou, X Gao, D Liu, X Yang, T Liu",
+  "cited": "4",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:yD5IFk8b50cC",
+  "title": "Gradient constrained sharpness-aware prompt learning for vision-language models",
+  "venue": "arXiv preprint arXiv:2309.07866",
+  "year": "2023"
+ },
+ {
+  "authors": "杨曦， 张鑫， 郭浩远， 王楠楠， 高新波",
+  "cited": "4",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:4JMBOYKVnBMC",
+  "title": "基于不变特征的多源遥感图像舰船目标检测算法",
+  "venue": "电子学报 50 (4), 887-899",
+  "year": "2022"
+ },
+ {
+  "authors": "X Yang, X Zhang, HY Guo, N Wang, X Gao",
+  "cited": "4",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:isC4tDSrTZIC",
+  "title": "Invariant features based ship detection model for multi-source remote sensing images",
+  "venue": "Acta Electronica Sinica 50 (4), 887-899",
+  "year": "2022"
+ },
+ {
+  "authors": "Y Tang, X Yang, X Jiang, N Wang, X Gao",
+  "cited": "4",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:7PzlFSSx8tAC",
+  "title": "Dually distribution pulling network for cross-resolution person reidentification",
+  "venue": "IEEE Transactions on Cybernetics 52 (11), 12016-12027",
+  "year": "2021"
+ },
+ {
+  "authors": "X Wang, X Yang, D Yang",
+  "cited": "4",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:9ZlFYXVOiuMC",
+  "title": "A novel SRTSR model for cross-resolution person re-identification",
+  "venue": "IEEE Access 9, 32106-32114",
+  "year": "2021"
+ },
+ {
+  "authors": "X Yang, W Dong, X Wang, D Cheng, N Wang",
+  "cited": "3",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:8AbLer7MMksC",
+  "title": "FA-Net: A Feature Alignment Network for Video-Based Visible-Infrared Person Re-Identification",
+  "venue": "IEEE Transactions on Image Processing 34, 8406-8420",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, Z Zhou, D Yang",
+  "cited": "3",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:geHnlv5EZngC",
+  "title": "SFDN: a novel semantic feature decouple network for fine-grained remote sensing object detection",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 63, 1-16",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, H Shi, Z Li, M Qiao, F Gao, N Wang",
+  "cited": "3",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:WbkHhVStYXYC",
+  "title": "S3OIL: Semi-Supervised SAR-to-Optical Image Translation via Multi-Scale and Cross-Set Matching",
+  "venue": "IEEE Transactions on Image Processing",
+  "year": "2025"
+ },
+ {
+  "authors": "X Gu, X Yang, H Liu, D Yang",
+  "cited": "3",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:a0OBvERweLwC",
+  "title": "Adaptive granularity-fused keypoint detection for 6D pose estimation of space targets",
+  "venue": "Remote Sensing 16 (22), 4138",
+  "year": "2024"
+ },
+ {
+  "authors": "李航宇， 王楠楠， 朱明瑞， 杨曦， 高新波",
+  "cited": "3",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:j3f4tGmQtD8C",
+  "title": "神经结构搜索的研究进展综述",
+  "venue": "软件学报 33 (1), 129-149",
+  "year": "2021"
+ },
+ {
+  "authors": "X Yang, X Gao, B Song, N Wang, D Yang",
+  "cited": "3",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:_FxGoFyzp5QC",
+  "title": "Saliency deep embedding for aurora image search",
+  "venue": "2018 IEEE International Conference on Multimedia and Expo (ICME), 1-6",
+  "year": "2018"
+ },
+ {
+  "authors": "D Yang, X Yang, X Tan, H Dang, K Wang",
+  "cited": "3",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:Tyk-4Ss8FVUC",
+  "title": "Ground moving target detection in MIMO-SAR system",
+  "venue": "2016 IEEE International Geoscience and Remote Sensing Symposium (IGARSS …",
+  "year": "2016"
+ },
+ {
+  "authors": "X Yin, J Wang, X Yang, M Xu, X Gu, N Wang",
+  "cited": "2",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:AXPGKjj_ei8C",
+  "title": "Unleashing the multi-view fusion potential: noise correction in VLM for open-vocabulary 3D scene understanding",
+  "venue": "IEEE Transactions on Multimedia",
+  "year": "2026"
+ },
+ {
+  "authors": "J Wang, M Liu, X Yang, X Wei, L Wang, N Wang",
+  "cited": "2",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:q3oQSFYPqjQC",
+  "title": "Satellite-GS: Enhanced 2D Gaussian Splatting for Robust Satellite Reconstruction",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, Q Xie",
+  "cited": "2",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:5ugPr518TE4C",
+  "title": "Styleproto: Style-augmented prototype learning for cross-domain few-shot object detection",
+  "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 40 (14), 11748 …",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, Z Zhou, D Yang",
+  "cited": "2",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:5Ul4iDaHHb8C",
+  "title": "Elaborate Feature Decoupling for Weakly Supervised Fine-Grained Object Detection in Remote Sensing Images",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 64, 1-14",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, W Dong, G Zheng, N Wang",
+  "cited": "2",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:4fKUyHm3Qg0C",
+  "title": "Nearest Neighbor Sample Constraint and ODE Guided Feature Reconstruction for Unsupervised Person Re-Identification",
+  "venue": "IEEE Transactions on Circuits and Systems for Video Technology",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, P Li, Q Zhou, N Wang, X Gao",
+  "cited": "2",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:08ZZubdj9fEC",
+  "title": "Uncertainty quantification for semi-supervised object detection in remote sensing images",
+  "venue": "IEEE Transactions on Image Processing 34, 7656-7669",
+  "year": "2025"
+ },
+ {
+  "authors": "J Sun, D Cheng, X Yang, N Wang",
+  "cited": "2",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:VOx2b1Wkg3QC",
+  "title": "Dual domain control via active learning for remote sensing domain incremental object detection",
+  "venue": "2025 IEEE/CVF International Conference on Computer Vision (ICCV), 3809-3818",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, H Liu, N Wang, X Gao",
+  "cited": "2",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:4OULZ7Gr8RgC",
+  "title": "Image-Level adaptive adversarial ranking for person re-Identification",
+  "venue": "IEEE Transactions on Image Processing 33, 5172-5182",
+  "year": "2024"
+ },
+ {
+  "authors": "X Yang, H Shi, F Gao, N Wang",
+  "cited": "1",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:1qzjygNMrQYC",
+  "title": "AdaNoise: Cycle-Consistent Image Translation with Domain-Adaptive Noise Perturbation",
+  "venue": "IEEE Transactions on Circuits and Systems for Video Technology",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, Q Xie, Y Yang, N Wang",
+  "cited": "1",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:wbdj-CoPYUoC",
+  "title": "Active Style-Content Dual-Branch Domain Adaptation for Semi-Supervised SAR Object Detection",
+  "venue": "IEEE Transactions on Image Processing 35, 3835-3849",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, X Zhong, D Kong, N Wang",
+  "cited": "1",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:tS2w5q8j5-wC",
+  "title": "Toward Generalizable Prompt Learning via Multi-Regularization Guided Knowledge Distillation",
+  "venue": "IEEE Transactions on Image Processing 34, 7600-7612",
+  "year": "2025"
+ },
+ {
+  "authors": "J Sun, X Yang, D Yang",
+  "cited": "1",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:738O_yMBCRsC",
+  "title": "Elaborate Information Refinement Network for Fine-Grained Object Detection in Remote Sensing Images",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, W Dong, Y Tang, G Zheng, N Wang, X Gao",
+  "cited": "1",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:Tiz5es2fbqcC",
+  "title": "Condense loss: Exploiting vector magnitude during person Re-identification training process",
+  "venue": "Pattern Recognition, 112443",
+  "year": "2025"
+ },
+ {
+  "authors": "梁昌城， 王楠楠， 朱明瑞， 杨曦， 李洁， 高新波",
+  "cited": "1",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:iH-uZ7U-co4C",
+  "title": "基于多尺度特征融合的人脸照片-素描合成",
+  "venue": "中国科学: 信息科学 52 (2), 334-347",
+  "year": "2022"
+ },
+ {
+  "authors": "X Yang, N Wang, B Song, X Gao",
+  "cited": "1",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:hqOjcs7Dif8C",
+  "title": "Aurora image search with saliency deep features",
+  "venue": "IEEE Access 7, 65996-66006",
+  "year": "2019"
+ },
+ {
+  "authors": "X Yang, H Zhou, H Zhu, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:eMMeJKvmdy0C",
+  "title": "Multimodal-Guided Self-Distillation for Unified Person Search",
+  "venue": "Neural Networks, 109581",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, P Li, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:Y5dfb0dijaUC",
+  "title": "From Generation to Optimization: Improving Pseudo Labels for Semi-Supervised Object Detection",
+  "venue": "IEEE Transactions on Image Processing",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, H Zhou, H Zhu, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:Mojj43d5GZwC",
+  "title": "A Task-Aware Feature Decoupling Framework for End-to-End Person Search",
+  "venue": "IEEE Transactions on Multimedia",
+  "year": "2026"
+ },
+ {
+  "authors": "J Chen, X Yang, D Cheng, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:WA5NYHcadZ8C",
+  "title": "Adversarial Specific Noise Generation with Dynamic Feature Dispersion for Visible-Infrared Person Re-Identification",
+  "venue": "IEEE Transactions on Multimedia",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, H Zhou, D Cheng, M Tian, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:HE397vMXCloC",
+  "title": "Multi-level Explicit Feature Alignment Network for Unsupervised Domain Adaptive Person Search",
+  "venue": "IEEE Transactions on Circuits and Systems for Video Technology",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, K Chen, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:XiVPGOgt02cC",
+  "title": "ALIGNER: Learning Fine-grained Cross-modal Alignment for Text-Based Person Retrieval",
+  "venue": "IEEE Transactions on Information Forensics and Security",
+  "year": "2026"
+ },
+ {
+  "authors": "C Feng, X Gu, B Wang, X Yang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:bnK-pcrLprsC",
+  "title": "Zero-Shot Multi-Modal Part Segmentation for Space Target via 3D-2D Semantic Priors Transfer",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+  "year": "2026"
+ },
+ {
+  "authors": "K Chen, X Yang, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:V3AGJWp-ZtQC",
+  "title": "Towards Semantically Enhanced Representation Learning for Text-Based Person Retrieval",
+  "venue": "IEEE Transactions on Image Processing",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, X Zhong, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:J-pR_7NvFogC",
+  "title": "Distribution-Aware Prompt Learning for Vision-Language Models With Dynamic Boundary Prototype",
+  "venue": "IEEE Transactions on Image Processing 35, 3537-3549",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, H Zhou, D Cheng, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:kRWSkSYxWN8C",
+  "title": "Overcoming Dual Incremental Challenges in Continual Person Search via Adapter and Prototype",
+  "venue": "IEEE Transactions on Image Processing",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, H Zhang, S Zhang, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:mvPsJ3kp5DgC",
+  "title": "Prompt Driven Knowledge Distillation for Remote Sensing Object Detection",
+  "venue": "IEEE Transactions on Image Processing",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, K Chen, C Qi, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:fQNAKQ3IYiAC",
+  "title": "Probabilistic Distribution Alignment for Text-Based Person Retrieval",
+  "venue": "IEEE Transactions on Circuits and Systems for Video Technology",
+  "year": "2026"
+ },
+ {
+  "authors": "W Dong, X Yang, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:LPZeul_q3PIC",
+  "title": "Sparse VMamba: Robust Spatio-Temporal Information Modeling for Event Camera Person Re-Identification",
+  "venue": "IEEE Transactions on Information Forensics and Security",
+  "year": "2026"
+ },
+ {
+  "authors": "X Yang, Z Zhou, S Duan, D Yang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:sSrBHYA8nusC",
+  "title": "SCIR: A Weakly Supervised Contextual Instance Refinement Method for Remote Sensing Object Detection",
+  "venue": "IEEE Transactions on Geoscience and Remote Sensing 63, 1-17",
+  "year": "2025"
+ },
+ {
+  "authors": "X Yang, H Zhou, D Cheng, M Tian, N Wang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:B3FOqHPlNUQC",
+  "title": "Semantic-Interactive Clustering Optimization with SAM for Weakly-Supervised Person Search",
+  "venue": "IEEE Transactions on Circuits and Systems for Video Technology",
+  "year": "2025"
+ },
+ {
+  "authors": "J Wang, X Yang",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:P5F9QuxV20EC",
+  "title": "BIH: A novel satellite 3D point cloud generation method",
+  "venue": "Journal of Information and Intelligence",
+  "year": "2025"
+ },
+ {
+  "authors": "魏梓钰， 杨曦， 王楠楠， 杨东， 高新波",
+  "cited": "",
+  "href": "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:r0BpntZqJG4C",
+  "title": "互惠双向生成对抗网络用于跨模态行人重识别",
+  "venue": "西安电子科技大学学报 48 (2), 205-212",
+  "year": "2023"
+ }
+]

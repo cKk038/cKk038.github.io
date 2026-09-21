@@ -1,0 +1,96 @@
+---
+/**
+ * 研究页：研究方向卡片（左图右文，整宽堆叠）→ 代表性论文
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PublicationList from '../components/PublicationList.astro';
+import { topics } from '../data/research';
+import { selectedPublications } from '../data/publications';
+import { ui, t, localizePath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const pageTitle = t(ui.research.pageTitle, lang);
+const selected = selectedPublications(8);
+---
+
+<BaseLayout lang={lang} path="/research/" title={pageTitle}>
+  <header class="page-header">
+    <div class="container">
+      <h1>{pageTitle}</h1>
+      <ul class="breadcrumb-nav">
+        <li><a href={localizePath('/', lang)}>{t(ui.common.breadcrumbHome, lang)}</a></li>
+        <li aria-current="page">{pageTitle}</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ─────────────────── 研究方向 ─────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeader
+          eyebrow={ui.research.eyebrow}
+          heading={t(ui.research.heading, lang)}
+          intro={ui.research.intro}
+          lang={lang}
+        />
+      </div>
+
+      <div class="topic-stack">
+        {topics.map((topic, index) => (
+          <div class="reveal" data-delay={String(Math.min(index + 1, 6))}>
+            <ProjectCard topic={topic} lang={lang} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────── 代表性论文 ─────────────────── -->
+  {/* 论文还没导入时不渲染这一节，免得留一个空板块 */}
+  {selected.length > 0 && (
+    <section class="section bg-soft">
+      <div class="container">
+        <div class="reveal">
+          <SectionHeader heading={t(ui.research.selectedPublications, lang)} lang={lang} />
+        </div>
+
+        <div class="reveal" data-delay="1">
+          <div class="pub-surface">
+            <PublicationList items={selected} lang={lang} grouped={false} />
+          </div>
+        </div>
+
+        <div class="text-center mt-4 reveal" data-delay="2">
+          <a class="btn btn-brand" href={localizePath('/publications/', lang)}>
+            {t(ui.research.viewAll, lang)}
+            <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .topic-stack {
+    display: grid;
+    gap: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+  }
+
+  /* 论文放在一个白色底板上，和浅蓝背景拉开层次 */
+  .pub-surface {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    box-shadow: var(--shadow-sm);
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+/**
+ * 首页
+ * Hero（slogan 为核心）→ 关于我们（图片拼贴 + 介绍 + 数字统计 + 加入我们）→ 最新动态
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import StatCounter from '../components/StatCounter.astro';
+import NewsList from '../components/NewsList.astro';
+import { site, aboutEyebrow } from '../config/site';
+import { news } from '../data/news';
+import { ui, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const labName = lang === 'zh' ? site.nameZh : site.nameEn;
+const affiliation = lang === 'zh' ? site.affiliationZh : site.affiliationEn;
+const slogan = lang === 'zh' ? site.sloganZh : site.sloganEn;
+const aboutParagraphs = lang === 'zh' ? site.aboutZh : site.aboutEn;
+const heroLinkText = lang === 'zh' ? site.heroLinkZh : site.heroLinkEn;
+---
+
+<BaseLayout lang={lang} path="/" isHome>
+  <!-- ─────────────────────────── Hero ─────────────────────────── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__inner reveal">
+        <h1 class="hero__slogan">{slogan}</h1>
+
+        <div class="hero__divider" aria-hidden="true"></div>
+
+        <p class="hero__lab">{labName}</p>
+        <p class="hero__lab-sub">{affiliation}</p>
+
+        <a class="hero__affiliation" href={site.heroLinkUrl} target="_blank" rel="noopener noreferrer">
+          {heroLinkText}
+          <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── 关于我们 ──────────────────────── -->
+  <section class="section" id="about">
+    <div class="container">
+      <!-- g-4 而非 g-5，避免窄屏横向溢出（原因见 Footer.astro 注释） -->
+      <div class="row g-4 align-items-center">
+        <!-- 左：研究图片拼贴 -->
+        <div class="col-lg-6 reveal">
+          <div class="about-collage">
+            {site.aboutImages.map((image) => (
+              <figure class:list={[image.srcAlt && 'collage-fade']}>
+                {image.srcAlt ? (
+                  /* 两张同机位影像交叉淡入淡出（CSS 动画，见 global.css） */
+                  <>
+                    <img src={image.src} alt={lang === 'zh' ? image.altZh : image.altEn} decoding="async" />
+                    <img src={image.srcAlt} alt="" aria-hidden="true" decoding="async" />
+                  </>
+                ) : (
+                  <img
+                    src={image.src}
+                    alt={lang === 'zh' ? image.altZh : image.altEn}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+              </figure>
+            ))}
+          </div>
+        </div>
+
+        <!-- 右：文字 + 数字 + 加入我们 -->
+        <div class="col-lg-6 reveal" data-delay="1">
+          <p class="eyebrow is-start">{t(aboutEyebrow, lang)}</p>
+          <h2 class="mb-3">{labName}</h2>
+
+          <div class="prose mb-4">
+            {aboutParagraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+
+          <div class="row g-4 mb-4">
+            {site.stats.map((stat) => (
+              <div class="col-sm-6">
+                <StatCounter
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  labelTop={lang === 'zh' ? stat.labelZh : stat.labelEn}
+                  labelBottom={lang === 'zh' ? stat.subZh : stat.subEn}
+                />
+              </div>
+            ))}
+          </div>
+
+          <a class="btn btn-brand" href={`mailto:${site.joinUs.email}`}>
+            {lang === 'zh' ? site.joinUs.labelZh : site.joinUs.labelEn}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── 最新动态 ──────────────────────── -->
+  {/* 没有动态内容时不渲染这一节，免得留一个空板块（src/data/news.ts 是空数组时） */}
+  {news.length > 0 && (
+    <section class="section bg-soft" id="news">
+      <div class="container">
+        <div class="reveal">
+          <SectionHeader eyebrow={ui.news.eyebrow} heading={t(ui.news.heading, lang)} lang={lang} />
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-10 reveal" data-delay="1">
+            <NewsList lang={lang} />
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

@@ -1,0 +1,69 @@
+---
+/**
+ * 研究方向卡片：左侧是**实验室论文里的框架图**，右侧是方向说明。
+ *
+ * 配图不是自绘示意图，而是从实验室代表性论文里取的 framework 图（CC BY 开放获取，
+ * 见 public/img/research/research-CREDITS.md）。因为论文插图里的文字很密，
+ * 缩到卡片宽度后基本读不清，所以**图片整块做成链接，点开看原图**。
+ * 按 CC BY 的要求，图注里必须标出论文出处 —— 见卡片底部的 credit 行。
+ */
+import { ui, t, type Lang } from '../i18n/ui';
+import type { ResearchTopic } from '../data/research';
+
+interface Props {
+  topic: ResearchTopic;
+  lang: Lang;
+}
+
+const { topic, lang } = Astro.props;
+const title = topic.title[lang];
+const zoomLabel = t(ui.research.viewFull, lang);
+---
+
+<article class="project-card" id={topic.id}>
+  {topic.image && (
+    <a
+      class="project-card__media"
+      href={topic.image}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={zoomLabel}
+      aria-label={`${zoomLabel}: ${title}`}
+    >
+      <img src={topic.image} alt={`${title} —— ${lang === 'zh' ? '论文框架图' : 'framework figure'}`} loading="lazy" decoding="async" />
+      <span class="project-card__zoom" aria-hidden="true">
+        <i class="bi bi-arrows-fullscreen"></i>
+        <span>{zoomLabel}</span>
+      </span>
+    </a>
+  )}
+
+  <div class="project-card__body">
+    <div class="project-card__head">
+      <h3 class="project-card__title">{title}</h3>
+      <span class="btn-square" aria-hidden="true">
+        <i class={`bi ${topic.icon}`}></i>
+      </span>
+    </div>
+
+    <p class="project-card__summary">{topic.summary[lang]}</p>
+
+    <ul class="project-card__points">
+      {topic.points.map((point) => (
+        <li>{point[lang]}</li>
+      ))}
+    </ul>
+
+    {topic.paper && (
+      <p class="project-card__credit">
+        <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+        {t(ui.research.figureFrom, lang)}
+        <cite>{topic.paper.title}</cite>
+        <span class="project-card__credit-venue">{topic.paper.venue}</span>
+        <a href={topic.paper.url} target="_blank" rel="noopener noreferrer" aria-label={topic.paper.title}>
+          <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+        </a>
+      </p>
+    )}
+  </div>
+</article>

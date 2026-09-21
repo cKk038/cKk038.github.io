@@ -1,0 +1,51 @@
+---
+/**
+ * 论文页：完整列表，按年份分组。
+ *
+ * 之前这里有一套「按研究方向筛选」的按钮，已按要求去掉 —— 直接按年份列出全部论文。
+ * 分类信息（topic）也一并从数据里删掉了，避免留下无人维护的死字段。
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import PublicationList from '../components/PublicationList.astro';
+import { allSorted } from '../data/publications';
+import { ui, t, localizePath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const pageTitle = t(ui.publications.pageTitle, lang);
+const items = allSorted();
+---
+
+<BaseLayout lang={lang} path="/publications/" title={pageTitle}>
+  <header class="page-header">
+    <div class="container">
+      <h1>{pageTitle}</h1>
+      <ul class="breadcrumb-nav">
+        <li><a href={localizePath('/', lang)}>{t(ui.common.breadcrumbHome, lang)}</a></li>
+        <li aria-current="page">{pageTitle}</li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeader
+          eyebrow={ui.publications.eyebrow}
+          heading={t(ui.publications.heading, lang)}
+          intro={ui.publications.intro}
+          lang={lang}
+        />
+      </div>
+
+      <div class="reveal" data-delay="1">
+        <PublicationList items={items} lang={lang} grouped />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

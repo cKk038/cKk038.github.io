@@ -1,0 +1,23 @@
+---
+/**
+ * 学生 / 校友的极简卡片 —— 只有姓名和可选备注。
+ *
+ * 参考站点就是这么做的（上百号人不放照片），这是让团队页长期可维护的关键取舍：
+ * 每年毕业、入学只需要在 src/data/people.ts 里加删一行。
+ */
+import { displayName, type Person } from '../data/people';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  person: Person;
+  lang: Lang;
+}
+
+const { person, lang } = Astro.props;
+const name = displayName(person, lang);
+---
+
+<li class="person-chip">
+  <span class="person-chip__name">{name}</span>
+  {person.note && <span class="person-chip__note">{person.note[lang]}</span>}
+</li>

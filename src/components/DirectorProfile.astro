@@ -1,0 +1,85 @@
+---
+/**
+ * 负责人详情区。
+ *
+ * 教师卡片那种 1/4 宽的网格放不下完整的个人简介、荣誉与兼职，
+ * 而团队页上负责人恰恰是最需要展开介绍的人 —— 所以只要某个教师填了 `bio`，
+ * 就渲染成这个左图右文的详情区；没填 bio 的教师仍然走网格卡片。
+ */
+import { initials, displayName, type Person } from '../data/people';
+import { ui, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  person: Person;
+  lang: Lang;
+}
+
+const { person, lang } = Astro.props;
+const name = displayName(person, lang);
+const label = { zh: '实验室负责人', en: 'Lab Director' };
+const interestsLabel = { zh: '主要研究方向', en: 'Research Interests' };
+const honorsLabel = { zh: '荣誉奖励与学术兼职', en: 'Honors & Academic Service' };
+---
+
+<article class="director">
+  <div class="director__media">
+    {person.photo ? (
+      <img src={person.photo} alt={name} decoding="async" />
+    ) : (
+      <span class="director__initials" aria-hidden="true">{initials(person.name)}</span>
+    )}
+  </div>
+
+  <div class="director__body">
+    <p class="eyebrow is-start">{t(label, lang)}</p>
+
+    <h3 class="director__name">
+      {name}
+      {lang === 'zh' && person.nameEn && <span class="director__name-alt">{person.nameEn}</span>}
+      {lang === 'en' && person.name !== person.nameEn && <span class="director__name-alt">{person.name}</span>}
+    </h3>
+
+    {person.role && <p class="director__role">{person.role[lang]}</p>}
+
+    {person.bio && (
+      <div class="prose director__bio">
+        {person.bio.map((paragraph) => (
+          <p>{paragraph[lang] || paragraph.zh}</p>
+        ))}
+      </div>
+    )}
+
+    {person.interests && (
+      <p class="director__interests">
+        <span class="director__label">{t(interestsLabel, lang)}</span>
+        {person.interests[lang]}
+      </p>
+    )}
+
+    {person.honors && person.honors.length > 0 && (
+      <div class="director__honors">
+        <span class="director__label">{t(honorsLabel, lang)}</span>
+        <ul>
+          {person.honors.map((honor) => (
+            <li>{honor[lang] || honor.zh}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <div class="director__links">
+      {person.email && (
+        <a href={`mailto:${person.email}`}>
+          <i class="bi bi-envelope" aria-hidden="true"></i>
+          {person.email}
+        </a>
+      )}
+      {person.url && (
+        <a href={person.url} target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-link-45deg" aria-hidden="true"></i>
+          {lang === 'zh' ? '个人主页' : 'Homepage'}
+        </a>
+      )}
+    </div>
+  </div>
+</article>

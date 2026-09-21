@@ -1,0 +1,84 @@
+---
+/**
+ * 最新动态列表
+ *
+ * 按年份分组（参考站点的处理）：最新一年默认展开，往年收进 <details> 里。
+ * 人名用 [[名字]] 包裹 → 橙色高亮小块。
+ */
+import { groupNewsByYear, formatNewsDate } from '../data/news';
+import { ui, t, type Lang } from '../i18n/ui';
+import { richText } from '../utils/richText';
+
+interface Props {
+  lang: Lang;
+  /** 只取最近几年；不传则全部 */
+  maxYears?: number;
+  /** 每年最多显示几条；不传则全部 */
+  perYear?: number;
+}
+
+const { lang, maxYears, perYear } = Astro.props;
+
+let groups = groupNewsByYear();
+if (typeof maxYears === 'number') groups = groups.slice(0, maxYears);
+if (typeof perYear === 'number') {
+  groups = groups.map((g) => ({ year: g.year, items: g.items.slice(0, perYear) }));
+}
+
+const [latest, ...earlier] = groups;
+
+function format(item: { date: string }) {
+  return formatNewsDate(item.date, lang);
+}
+---
+
+{!latest && <p class="text-muted-2 mb-0">{t(ui.news.empty, lang)}</p>}
+
+{latest && (
+  <div class="news-card">
+    <div class="news-year">
+      <span>{latest.year}</span>
+      <span class="news-year__accent">{latest.year}</span>
+    </div>
+    <ul class="news-list">
+      {latest.items.map((item) => (
+        <li>
+          <span class="news-list__date">{format(item)} — </span>
+          {item.url ? (
+            <a href={item.url} target="_blank" rel="noopener noreferrer" set:html={richText(item.text[lang] || item.text.zh)} />
+          ) : (
+            <span set:html={richText(item.text[lang] || item.text.zh)} />
+          )}
+        </li>
+      ))}
+    </ul>
+
+    {earlier.length > 0 && (
+      <details class="news-more">
+        <summary>{t(ui.news.earlier, lang)}</summary>
+        {earlier.map((group) => (
+          <div class="news-more__group">
+            <div class="news-year">
+              <span>{group.year}</span>
+              <span class="news-year__accent">{group.year}</span>
+            </div>
+            <ul class="news-list">
+              {group.items.map((item) => (
+                <li>
+                  <span class="news-list__date">{format(item)} — </span>
+                  <span set:html={richText(item.text[lang] || item.text.zh)} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </details>
+    )}
+  </div>
+)}
+
+<style>
+  .news-more__group {
+    margin-top: 1.5rem;
+  }
+</style>

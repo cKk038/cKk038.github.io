@@ -1,0 +1,75 @@
+---
+/**
+ * 论文列表
+ *
+ * 两种用法：
+ *   · grouped={true}  —— 按年份分组，每组一个「年份 / 年份」标题行（参考站点的处理）
+ *   · grouped={false} —— 扁平列表（用于首页「代表性论文」预览）
+ *
+ * 作者里的 [[名字]] 会高亮成橙色小块，一眼看出哪篇是本实验室的工作。
+ */
+import { groupByYear, type Publication } from '../data/publications';
+import { plainText, richText } from '../utils/richText';
+import { ui, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  items: Publication[];
+  lang: Lang;
+  grouped?: boolean;
+  /** 是否显示 pdf / doi / code 等小按钮 */
+  showLinks?: boolean;
+}
+
+const { items, lang, grouped = true, showLinks = true } = Astro.props;
+
+const groups = grouped ? groupByYear(items) : [{ year: 0, items }];
+---
+
+{items.length === 0 && <p class="text-muted-2 mb-0">{t(ui.publications.empty, lang)}</p>}
+
+{groups.map((group) => (
+  <div class="pub-group" data-year={group.year || undefined}>
+    {grouped && (
+      <h3 class="pub-year">
+        <span>{group.year}</span>
+        <span class="pub-year__accent">{group.year}</span>
+      </h3>
+    )}
+
+    <ul class="pub-list">
+      {group.items.map((pub) => (
+        <li class="pub-item" data-topic={pub.topic}>
+          <span class="pub-item__authors" set:html={richText(pub.authors)} />
+          {': '}
+          <span class="pub-item__title" title={plainText(pub.title)}>{pub.title}</span>
+          {'. '}
+          <span class="pub-item__venue">{pub.venue}</span>
+          {`, ${pub.year}.`}
+
+          {showLinks && pub.links && pub.links.length > 0 && (
+            <span class="pub-item__links">
+              {pub.links.map((link) => (
+                <a
+                  class="link-chip"
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${t(ui.publications.linkLabels[link.kind], lang)}: ${plainText(pub.title)}`}
+                >
+                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                  {t(ui.publications.linkLabels[link.kind], lang)}
+                </a>
+              ))}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+))}
+
+<style>
+  .pub-group + .pub-group {
+    margin-top: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  }
+</style>

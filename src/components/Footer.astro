@@ -1,0 +1,157 @@
+---
+/**
+ * 页脚：四栏（实验室 / 联系方式 / 相关链接 / 页面）+ 版权行
+ * 结构与参考站点一致，但去掉了模板残留的死链（Cookies / Help / FQAs / HTML Codex）。
+ */
+import { site, navItems } from '../config/site';
+import { ui, t, localizePath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const year = new Date().getFullYear();
+const address = lang === 'zh' ? site.contact.addressZh : site.contact.addressEn;
+const copyrightName = lang === 'zh' ? site.copyrightZh : site.copyrightEn;
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <!-- 用 g-4 而不是 g-5：g-5 的 3rem 槽宽会让行比容器宽 12px，
+         在 375px 这类窄屏上造成横向滚动 -->
+    <div class="row g-4">
+      <!-- 实验室 -->
+      <div class="col-lg-3 col-md-6">
+        <h2>{t(ui.footer.laboratory, lang)}</h2>
+        <ul class="footer-links">
+          <li><a href={localizePath('/', lang)}>{t(ui.footer.aboutUs, lang)}</a></li>
+          <li><a href={localizePath('/team/', lang)}>{t(ui.footer.teamMembers, lang)}</a></li>
+          <li><a href={localizePath('/research/', lang)}>{t(ui.footer.researchTopics, lang)}</a></li>
+          <li><a href={localizePath('/publications/', lang)}>{t(ui.footer.allPublications, lang)}</a></li>
+        </ul>
+      </div>
+
+      <!-- 联系方式 -->
+      <div class="col-lg-3 col-md-6">
+        <h2>{t(ui.footer.contact, lang)}</h2>
+        <ul class="footer-contact">
+          <li>
+            <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+            <span>
+              {address.map((line, i) => (
+                <>{line}{i < address.length - 1 && <br />}</>
+              ))}
+            </span>
+          </li>
+          <li>
+            <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+            <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+          </li>
+        </ul>
+
+        <div class="footer-social">
+          <a href={`mailto:${site.contact.email}`} title="Email" aria-label="Email">
+            <i class="bi bi-envelope" aria-hidden="true"></i>
+          </a>
+          {site.contact.github && (
+            <a
+              href={site.contact.github}
+              title="GitHub"
+              aria-label="GitHub"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="bi bi-github" aria-hidden="true"></i>
+            </a>
+          )}
+          {site.contact.wechatQr && (
+            <a
+              href={site.contact.wechatQr}
+              title={lang === 'zh' ? '微信公众号' : 'WeChat Official Account'}
+              aria-label={lang === 'zh' ? '微信公众号' : 'WeChat Official Account'}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="bi bi-wechat" aria-hidden="true"></i>
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- 相关链接 -->
+      <div class="col-lg-3 col-md-6">
+        <h2>{t(ui.footer.links, lang)}</h2>
+        <ul class="footer-links">
+          {site.links.map((link) => (
+            <li>
+              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                {lang === 'zh' ? link.labelZh : link.labelEn}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 页面 -->
+      <div class="col-lg-3 col-md-6">
+        <h2>{t(ui.footer.pages, lang)}</h2>
+        <ul class="footer-links">
+          {navItems.map((item) => (
+            <li>
+              <a href={localizePath(item.href, lang)}>{t(ui.nav[item.key], lang)}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom__inner">
+        <p class="mb-0">
+          © {year} {copyrightName}. {t(ui.footer.rights, lang)}.
+          {ui.footer.hasBuiltWith && <span class="footer-bottom__built">{t(ui.footer.builtWith, lang)}</span>}
+        </p>
+        <ul class="footer-menu">
+          <li><a href={localizePath('/', lang)}>{t(ui.nav.home, lang)}</a></li>
+          <li><a href={localizePath('/team/', lang)}>{t(ui.nav.team, lang)}</a></li>
+          <li><a href={localizePath('/research/', lang)}>{t(ui.nav.research, lang)}</a></li>
+          <li><a href={localizePath('/publications/', lang)}>{t(ui.nav.publications, lang)}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-bottom__built {
+    display: block;
+    color: rgba(255, 255, 255, 0.42);
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+  }
+
+  .footer-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-menu li {
+    display: flex;
+    align-items: center;
+  }
+
+  /* 分隔竖线，沿用参考站点的 .footer-menu 处理 */
+  .footer-menu li + li::before {
+    content: '';
+    width: 1px;
+    height: 0.9em;
+    background: rgba(255, 255, 255, 0.18);
+    margin: 0 0.75rem;
+  }
+</style>

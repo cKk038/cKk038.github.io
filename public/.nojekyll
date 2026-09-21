@@ -1,0 +1,4 @@
+此文件用于 GitHub Pages：
+GitHub Pages 默认用 Jekyll 处理站点，而 Jekyll 会忽略以下划线开头的目录，
+Astro 打包出来的资源目录正好叫 _astro/ —— 没有这个文件，样式和脚本会全部 404。
+请不要删除。

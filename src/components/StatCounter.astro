@@ -1,0 +1,26 @@
+---
+/**
+ * 数字统计（参考站点那个带橙色左边框的大数字）。
+ *
+ * 无障碍 / 无 JS 考虑：HTML 里直接渲染最终数值，JS 只负责把它从 0 滚上去。
+ * 这样 JS 挂掉或禁用时，访客看到的仍然是正确的数字，而不是 0。
+ */
+interface Props {
+  value: number;
+  suffix?: string;
+  labelTop: string;
+  labelBottom: string;
+}
+
+const { value, suffix = '', labelTop, labelBottom } = Astro.props;
+---
+
+<div class="stat">
+  <span class="stat__value" data-count-to={value} data-count-suffix={suffix}>
+    {value}{suffix}
+  </span>
+  <span class="stat__label">
+    <span class="stat__label-top">{labelTop}</span>
+    <span class="stat__label-bottom">{labelBottom}</span>
+  </span>
+</div>
