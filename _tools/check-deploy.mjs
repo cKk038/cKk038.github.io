@@ -178,7 +178,44 @@ try {
   problems.push(`读取 package.json / package-lock.json 失败：${e.message}`);
 }
 
-/* ── 5. 产物核对（dist/ 存在才查） ───────────────────────── */
+/* ── 5. lockfile 的下载地址不能指向国内镜像 ────────────────
+ * GitHub Actions 的构建机在美国，拉 registry.npmmirror.com 会失败，
+ * 而国内本地拉它完全正常 —— 结果就是「本地能构建、CI 的 npm ci 秒退」。
+ * 这个坑一旦踩了很难查，所以在部署前直接拦下来。
+ */
+
+try {
+  const lock = JSON.parse(fs.readFileSync(path.join(ROOT, 'package-lock.json'), 'utf8'));
+  const MIRRORS = [
+    'registry.npmmirror.com',
+    'registry.npm.taobao.org',
+    'npm.taobao.org',
+    'mirrors.cloud.tencent.com',
+    'mirrors.huaweicloud.com',
+  ];
+  const found = new Map();
+  for (const key of Object.keys(lock.packages || {})) {
+    const r = lock.packages[key].resolved;
+    if (!r || typeof r !== 'string') continue;
+    for (const m of MIRRORS) {
+      if (r.includes(`//${m}/`)) found.set(m, (found.get(m) || 0) + 1);
+    }
+  }
+  if (found.size) {
+    const detail = [...found].map(([m, c]) => `${m}（${c} 条）`).join('、');
+    problems.push(
+      `package-lock.json 里有下载地址指向国内镜像：${detail}\n` +
+        '    GitHub 的构建机在美国，拉这些镜像会失败，npm ci 会直接退出。\n' +
+        '    修法：node _tools/fix-lockfile-registry.mjs（换成官方源，版本与哈希都不变）',
+    );
+  } else {
+    notes.push('lockfile 的下载地址均为官方源（CI 能正常拉取）');
+  }
+} catch (e) {
+  problems.push(`读取 package-lock.json 失败：${e.message}`);
+}
+
+/* ── 6. 产物核对（dist/ 存在才查） ───────────────────────── */
 
 const distDir = path.join(ROOT, 'dist');
 let htmlFiles = [];

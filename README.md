@@ -353,16 +353,16 @@ zh: '五篇论文被 ECCV 2026 接收，第一作者：[[Nuoyan Zhou]] 和 [[Pen
 
 ### 一次性设置（约 3 分钟）
 
-本站按**组织站**配置（`astro.config.mjs` 里 `site: 'https://xi-lab-xdu.github.io'`，没有 `base`），
-所以仓库名必须是 **`XI-Lab-XDU.github.io`**。GitHub 就是靠这个特殊仓库名
+当前部署在**个人账户的用户站**（`astro.config.mjs` 里 `site: 'https://ckk038.github.io'`，没有 `base`），
+所以仓库名必须是 **`<你的用户名>.github.io`**。GitHub 就是靠这个特殊仓库名
 决定站点挂在根路径还是子路径的，名字不对会白屏。
 
-1. 在 `XI-Lab-XDU` 组织下新建仓库，名字填 `XI-Lab-XDU.github.io`，公开或私有都行。
+1. 在个人账户下新建仓库，名字填 `<你的用户名>.github.io`，公开或私有都行。
    **不要**勾选 "Add a README file"，否则第一次推送会因为远程有本地没有的提交而被拒。
 2. 本地关联远程并推送：
 
    ```bash
-   git remote add origin https://github.com/XI-Lab-XDU/XI-Lab-XDU.github.io.git
+   git remote add origin https://github.com/<你的用户名>/<你的用户名>.github.io.git
    git branch -M main
    git push -u origin main
    ```
@@ -370,7 +370,7 @@ zh: '五篇论文被 ECCV 2026 接收，第一作者：[[Nuoyan Zhou]] 和 [[Pen
 3. 仓库 **Settings → Pages → Build and deployment → Source** 选 **GitHub Actions**。
    （不要选 "Deploy from a branch"——那条路不会跑我们写的构建流程。）
 4. 等一两分钟，点开仓库的 **Actions** 标签页，看到绿色对勾就发布好了，
-   地址是 <https://xi-lab-xdu.github.io>。
+   地址是 `https://<你的用户名>.github.io`。
 
 之后就一劳永逸了：**每次 `git push` 到 `main`，GitHub 自动重新构建并发布**，不用手动做任何事。
 在 Actions 页面点 *Run workflow* 也可以手动触发一次部署。
@@ -379,16 +379,17 @@ zh: '五篇论文被 ECCV 2026 接收，第一作者：[[Nuoyan Zhou]] 和 [[Pen
 
 | 目标地址 | 要改的地方 |
 |---|---|
-| `https://xi-lab-xdu.github.io`（当前配置） | 什么都不用改，仓库名对上即可 |
-| `https://xi-lab-xdu.github.io/homepage`（项目站） | 要改**代码**，见下 |
-| `https://lab.example.edu.cn`（自有域名） | 改 `astro.config.mjs` 的 `site`；仓库 **Settings → Pages → Custom domain** 填域名；域名商那边加 CNAME 记录指向 `xi-lab-xdu.github.io` |
+| 个人用户站 `https://<用户名>.github.io`（当前） | 仓库名对上即可，不用改代码 |
+| 组织站 `https://<组织名>.github.io` | 改 `astro.config.mjs` 的 `site`、`public/robots.txt` 里的 Sitemap、`git remote`，仓库名改成 `<组织名>.github.io` |
+| 子路径项目站 `https://<用户名>.github.io/homepage` | 要改**代码**，见下 |
+| 自有域名 `https://lab.example.edu.cn` | 改 `site`；仓库 **Settings → Pages → Custom domain** 填域名；域名商那边加 CNAME 记录 |
 
-**换成项目站不能只加 `base`。** 实测过（构建了一份带 `base` 的产物来比对）：
+**换成子路径项目站不能只加 `base`。** 实测过（构建了一份带 `base` 的产物来比对）：
 Astro 只会自动给自己打包的 `_astro/…` 资源加前缀，而本站的导航链接走
 `localizePath()`、图片是 `/img/…` 这类写死的绝对路径，**都不会自动加前缀**，
 结果就是全部 404、页面白屏。真要改成项目站，得同时改 `src/i18n/ui.ts` 里的
 `localizePath()` 和所有资源引用，让它们拼上 `import.meta.env.BASE_URL`。
-所以除非有特别理由，直接用上面那个组织站最省事。
+所以除非有特别理由，用根路径的用户站/组织站最省事。
 
 ### 推送前先自检
 
@@ -403,6 +404,8 @@ node _tools/check-deploy.mjs
 - **大小写是否与磁盘完全一致** —— GitHub Actions 跑在 Linux 上，文件名大小写敏感；
   Windows 本地不区分大小写，代码里写错大小写照样能跑，云端会直接 404；
 - `site` / `base` 与 `public/robots.txt` 里的 Sitemap 地址是否自洽；
+- `package.json` 与 `package-lock.json` 是否同步（CI 用 `npm ci`，不同步会直接失败）；
+- **lockfile 里的下载地址有没有指向国内镜像**（见下面的坑）；
 - `dist/` 产物里的引用能不能对上实际文件。
 
 ### 常见坑
@@ -410,10 +413,23 @@ node _tools/check-deploy.mjs
 - **第一次推送就失败，报 `Get Pages site failed` 或 `Not Found`** → 顺序反了。
   必须先在 **Settings → Pages → Source** 选中 **GitHub Actions**，再推送（或推送失败后去开，
   然后到 Actions 页面点 **Re-run all jobs** 重跑一次即可，不用改任何代码）。
-- **推送后 Actions 报错、但本地 `npm run build` 正常** → 八成是大小写问题，
-  跑一次 `node _tools/check-deploy.mjs` 就能定位。
+- **推送后 Actions 报错、但本地 `npm run build` 正常** → 先跑 `node _tools/check-deploy.mjs`，
+  它会检查大小写、锁文件同步、下载源这三类「本地正常云端失败」的经典原因。
+- **CI 卡在「安装依赖」那一步、几秒钟就失败，本地却完全正常** → 这个坑真踩过一次。
+  原因是 `package-lock.json` 里的下载地址指向了国内的 `registry.npmmirror.com`（淘宝镜像）——
+  国内本地拉它飞快，但 **GitHub 的构建机在美国，拉这个镜像会失败**。
+  修法：
+
+  ```bash
+  node _tools/fix-lockfile-registry.mjs   # 把下载地址换成官方源，版本号和哈希都不变
+  git add package-lock.json && git commit -m "lockfile 换用官方 npm 源" && git push
+  ```
+
+  项目里已经放了 `.npmrc` 把源固定在官方源，防止再被写回镜像。所以**不要删 `.npmrc`**；
+  国内想临时提速就用命令行参数覆盖：`npm install --registry=https://registry.npmmirror.com`，
+  但注意别把因此改动的 `package-lock.json` 提交上去（自检脚本会拦）。
 - **页面样式全丢、控制台一堆 404** → 资源路径少了或多了前缀。
-  组织站不该有 `base`，项目站必须有 `base` 且代码要跟着改（见上）。
+  根路径部署（用户站/组织站）不该有 `base`，子路径项目站必须有 `base` 且代码要跟着改（见上）。
 - **改了内容推上去，网站还是旧的** → 先看 Actions 有没有跑完；再确认改的文件真的提交了
   （`git status`），以及浏览器强刷（Ctrl+F5，静态资源有缓存）。
 - **部署方式选了 "Deploy from a branch"** → 换回 **GitHub Actions**。
@@ -445,7 +461,9 @@ node   _tools/verify-roster.mjs      # 核对团队名单与年级分组
 node   _tools/verify-publications.mjs  # 核对论文数据完整性
 node   _tools/verify-output.mjs      # 检查产物里有没有残留的占位内容
 node   _tools/check-freshness.mjs    # 检查 dist/ 是不是比 src/ 旧（推送前跑一次）
-node   _tools/check-deploy.mjs       # 部署前自检：资源路径存在性、大小写、site/base 一致性
+node   _tools/check-deploy.mjs       # 部署前自检：资源路径、大小写、site 配置、依赖源
+node   _tools/fix-lockfile-registry.mjs  # 把 lockfile 的下载地址从国内镜像换成官方源
+node   _tools/fetch-ci-log.mjs       # 查看 GitHub Actions 最近一次运行的失败步骤
 ```
 
 要求 Node.js ≥ 20。辅助脚本需要 Python 3 + Pillow + numpy
@@ -566,7 +584,9 @@ node   _tools/check-deploy.mjs       # 部署前自检：资源路径存在性�
    ├─ verify-publications.mjs ← 核对论文数据的完整性
    ├─ verify-output.mjs       ← 检查产物里有没有残留的占位内容
    ├─ check-freshness.mjs     ← 检查 dist/ 是否比 src/ 旧
-   └─ check-deploy.mjs        ← 部署前自检（资源路径 / 大小写 / site 配置）
+   ├─ check-deploy.mjs        ← 部署前自检（资源路径 / 大小写 / site 配置 / 依赖源）
+   ├─ fix-lockfile-registry.mjs ← lockfile 下载地址换回官方 npm 源
+   └─ fetch-ci-log.mjs        ← 查 GitHub Actions 最近一次运行的失败步骤
 ```
 
 ---
@@ -581,7 +601,7 @@ node   _tools/check-deploy.mjs       # 部署前自检：资源路径存在性�
 - [x] 地址 `陕西省西安市西沣路兴隆段 266 号`、邮箱 `yangx@xidian.edu.cn`、GitHub 组织 `XI-Lab-XDU`
 - [x] Logo 已从 `docs/brand/XI-Lab_logo.pdf` 提取并接入（导航栏 / favicon / 分享图）
 - [x] 品牌色已切换为 logo 的蓝 `#2E9BD6` + 海军蓝 `#0E1F38`
-- [x] 部署地址按组织站配置为 `https://xi-lab-xdu.github.io`
+- [x] 部署地址配置为个人账户用户站 `https://ckk038.github.io`（2026-09-21 从组织站改过来）
 - [x] 研究方向改为四个（2026-09 更新）：多源数据智能分析 / 四维场景生成理解 / 具身智能与智能体 / 遥感目标智能感知
 - [x] 方向配图：**取自实验室自己论文里的框架图**（3 篇 MDPI CC BY + 1 篇 arXiv），
       图片可点开看原图，卡片底部标出论文出处
@@ -590,7 +610,10 @@ node   _tools/check-deploy.mjs       # 部署前自检：资源路径存在性�
       以及项目 → 期刊会议 → 专利）
 - [x] 论文页去掉「按方向筛选」，直接按年份列出全部论文；数据里的 `topic` 字段一并清除
 - [x] 部署流程已就绪：`.github/workflows/deploy.yml` 推送到 `main` 自动构建发布，
-      部署前自检脚本 `_tools/check-deploy.mjs` 已通过。**只剩在 GitHub 上建仓库 + 开 Pages**（见「部署到 GitHub Pages」）
+      仓库 `cKk038/cKk038.github.io` 已建、Pages 已开（Source = GitHub Actions）
+- [x] 修掉首次部署失败：`package-lock.json` 的下载地址原先指向国内镜像
+      `registry.npmmirror.com`，GitHub 的构建机在美国拉不到，`npm ci` 秒退。
+      已换成官方源并加 `.npmrc` 固定，自检脚本也加了这道检查
 
 **待实验室确认**
 - [ ] 研究方向的 `points`（子方向条目）是按方向内涵整理的，需确认表述准确
