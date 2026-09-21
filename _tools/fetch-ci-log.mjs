@@ -1,91 +1,92 @@
 import https from 'node:https';
 
 /**
- * 从 GitHub API 拉取某次 Actions 运行中失败步骤的日志，用来定位 CI 失败原因。
- * 公开仓库的日志接口可能需要认证；拿不到时会明确报出来，不猜。
+ * 读取某次 Actions 运行的失败信息。
+ *
+ * 日志正文（/actions/jobs/<id>/logs）需要仓库管理员权限，匿名读不到；
+ * 但「注解（annotations）」对公开仓库是匿名可读的，而工作流里用
+ *   echo "::error::..."
+ * 输出的内容会变成注解。所以配合一个会打印错误的安装步骤，
+ * 就能在不登录的情况下看到真正的报错。
  */
 
 const OWNER = process.argv[2] || 'cKk038';
 const REPO = process.argv[3] || 'cKk038.github.io';
-const RUN_ID = process.argv[4] || '';
 
-function request(host, path, headers = {}) {
+function req(host, path, headers = {}) {
   return new Promise((resolve) => {
-    const req = https.request(
-      { host, path, method: 'GET', headers: { 'User-Agent': 'xi-lab-deploy-check', ...headers }, timeout: 25000 },
+    const r = https.request(
+      {
+        host,
+        path,
+        method: 'GET',
+        headers: { 'User-Agent': 'xi-lab-ci-check', Accept: 'application/vnd.github+json', ...headers },
+        timeout: 25000,
+      },
       (res) => {
-        let body = '';
-        res.on('data', (c) => { body += c; });
-        res.on('end', () => resolve({ status: res.statusCode, headers: res.headers, body }));
+        let b = '';
+        res.on('data', (c) => { b += c; });
+        res.on('end', () => resolve({ status: res.statusCode, headers: res.headers, body: b }));
       },
     );
-    req.on('timeout', () => { req.destroy(); resolve({ status: 0, body: '请求超时' }); });
-    req.on('error', (e) => resolve({ status: 0, body: e.code || e.message }));
-    req.end();
+    r.on('timeout', () => { r.destroy(); resolve({ status: 0, body: '超时' }); });
+    r.on('error', (e) => resolve({ status: 0, body: e.code || e.message }));
+    r.end();
   });
 }
 
-const GH = { Accept: 'application/vnd.github+json' };
-
-async function findRun() {
-  if (RUN_ID) return RUN_ID;
-  const r = await request('api.github.com', `/repos/${OWNER}/${REPO}/actions/runs?per_page=1`, GH);
-  if (r.status !== 200) {
-    console.log(`查询运行记录失败：HTTP ${r.status}\n${r.body.slice(0, 300)}`);
-    process.exit(1);
-  }
-  const run = JSON.parse(r.body).workflow_runs[0];
-  console.log(`最近一次运行：#${run.run_number}「${run.display_title}」${run.conclusion}  ${run.created_at}\n`);
-  return run.id;
-}
-
-const runId = await findRun();
-
-const jobsRes = await request('api.github.com', `/repos/${OWNER}/${REPO}/actions/runs/${runId}/jobs`, GH);
-if (jobsRes.status !== 200) {
-  console.log(`查询作业失败：HTTP ${jobsRes.status}`);
+const runsRes = await req('api.github.com', `/repos/${OWNER}/${REPO}/actions/runs?per_page=5`);
+if (runsRes.status !== 200) {
+  console.log(`查询运行记录失败 HTTP ${runsRes.status}`);
   process.exit(1);
 }
 
+const runs = JSON.parse(runsRes.body).workflow_runs;
+console.log(`最近 ${runs.length} 次运行：\n`);
+for (const r of runs) {
+  console.log(`  #${String(r.run_number).padStart(2)}  ${r.conclusion.padEnd(9)} ${r.created_at}  ${r.display_title}`);
+}
+console.log('');
+
+const latest = runs[0];
+const jobsRes = await req('api.github.com', `/repos/${OWNER}/${REPO}/actions/runs/${latest.id}/jobs`);
 const jobs = JSON.parse(jobsRes.body).jobs;
-const failedJob = jobs.find((j) => j.conclusion === 'failure');
-if (!failedJob) {
-  console.log('这次运行里没有失败的作业。');
-  process.exit(0);
-}
 
-const failedStep = failedJob.steps.find((s) => s.conclusion === 'failure');
-console.log(`失败作业：${failedJob.name}（job id ${failedJob.id}）`);
-console.log(`失败步骤：${failedStep ? `「${failedStep.name}」` : '(整作业失败，无单独失败步骤)'}\n`);
+for (const job of jobs) {
+  if (job.conclusion !== 'failure') continue;
+  const step = job.steps.find((s) => s.conclusion === 'failure');
+  console.log(`失败作业「${job.name}」失败步骤「${step ? step.name : '(无)'}」\n`);
 
-// 日志接口只接受 application/vnd.github+json，返回 302 指向一个带签名的临时地址，
-// 需要手动跟随（那台主机不在 github.com 上，本机可以直接连）。
-async function fetchLog(owner, repo, jobId) {
-  const r = await request('api.github.com', `/repos/${owner}/${repo}/actions/jobs/${jobId}/logs`, GH);
-  if (r.status === 200) return { ok: true, text: String(r.body) };
-  if (r.status !== 301 && r.status !== 302) {
-    return { ok: false, why: `HTTP ${r.status} ${String(r.body).slice(0, 200)}` };
+  // 各步骤耗时：能区分「秒退的校验错误」和「几十秒的网络超时」
+  console.log('各步骤耗时：');
+  for (const s of job.steps) {
+    const dur = s.started_at && s.completed_at
+      ? ((new Date(s.completed_at) - new Date(s.started_at)) / 1000).toFixed(1)
+      : '-';
+    if (s.conclusion === 'skipped') continue;
+    console.log(`  ${String(s.number).padStart(2)}  ${String(dur).padStart(6)}s  ${s.conclusion.padEnd(9)} ${s.name}`);
   }
+  console.log('');
 
-  const target = new URL(r.headers.location);
-  const followed = await request(target.host, target.pathname + target.search, { Accept: '*/*' });
-  if (followed.status !== 200) return { ok: false, why: `跟随重定向后 HTTP ${followed.status}` };
-  return { ok: true, text: String(followed.body) };
-}
-
-const log = await fetchLog(OWNER, REPO, failedJob.id);
-
-if (log.ok) {
-  const text = log.text;
-  // 去掉每行前面的时间戳，只留内容
-  const lines = text.split(/\r?\n/).map((l) => l.replace(/^\d{4}-\d{2}-\d{2}T[\d:.]+Z\s*/, ''));
-  console.log('──── 日志（筛出关键行）────\n');
-  const KEY = /npm (err|error|warn)|ERR!|ETIMEDOUT|ECONNRESET|EAI_AGAIN|ENOTFOUND|404 Not Found|403 Forbidden|Unsupported|not found|Missing:|lock file|can only install|error /i;
-  const picked = lines.filter((l) => KEY.test(l));
-  console.log(picked.length ? picked.slice(0, 80).join('\n') : '(没有匹配到关键行)');
-  console.log('\n──── 日志末尾 15 行 ────\n');
-  console.log(lines.slice(-15).join('\n'));
-} else {
-  console.log(`拉取日志失败：${log.why}`);
-  console.log('（自己看日志：仓库 → Actions → 点进失败的运行 → 左侧「构建」→ 展开「安装依赖」）');
+  // 注解接口：对公开仓库匿名可读
+  const checkRunId = job.check_run_url ? job.check_run_url.split('/').pop() : null;
+  if (!checkRunId) {
+    console.log('（这个作业没有 check run，读不到注解）');
+    continue;
+  }
+  const ann = await req('api.github.com', `/repos/${OWNER}/${REPO}/check-runs/${checkRunId}/annotations`);
+  if (ann.status !== 200) {
+    console.log(`读取注解失败 HTTP ${ann.status}：${ann.body.slice(0, 200)}`);
+    continue;
+  }
+  const list = JSON.parse(ann.body);
+  if (!list.length) {
+    console.log('这次运行没有任何注解（说明失败信息没有被打印成注解）。');
+    console.log('工作流里加上把报错输出成 ::error:: 的步骤后，就能在这里看到原因。');
+  } else {
+    for (const a of list) {
+      console.log(`[${a.annotation_level}] ${a.title || ''}`);
+      console.log(`${a.message}\n`);
+    }
+  }
 }

@@ -415,19 +415,33 @@ node _tools/check-deploy.mjs
   然后到 Actions 页面点 **Re-run all jobs** 重跑一次即可，不用改任何代码）。
 - **推送后 Actions 报错、但本地 `npm run build` 正常** → 先跑 `node _tools/check-deploy.mjs`，
   它会检查大小写、锁文件同步、下载源这三类「本地正常云端失败」的经典原因。
-- **CI 卡在「安装依赖」那一步、几秒钟就失败，本地却完全正常** → 这个坑真踩过一次。
-  原因是 `package-lock.json` 里的下载地址指向了国内的 `registry.npmmirror.com`（淘宝镜像）——
-  国内本地拉它飞快，但 **GitHub 的构建机在美国，拉这个镜像会失败**。
-  修法：
+- **CI 卡在「安装依赖」那一步、一两秒就失败，本地却完全正常** → 这个坑真踩过一次，原因不好找，
+  完整记在这里免得再犯。
+
+  **现象**：`npm ci` 在 Linux 构建机上 1 秒内报 `EUSAGE` 并列出
+  `Missing: @emnapi/runtime@1.11.3 from lock file`，而同一份 lockfile 在 Windows 本地
+  `npm ci` 完全正常。
+
+  **原因**：`npm ci` 会严格校验 lockfile 与 package.json 严丝合缝，缺任何一个包就直接退出。
+  这份 lockfile 是在 Windows 上生成的，**没有记录只有 Linux 才需要的 wasm32 平台变体依赖**
+  （`@emnapi/runtime`、`@emnapi/core`，来自 `sharp` 和 Vite 的 wasm 回退包）。
+  那些包在 Windows 上根本不会被安装，所以 npm 生成 lockfile 时就没解析它们。
+
+  **为什么补不齐**：在 Windows 上重新生成 lockfile、加 `--os=linux --cpu=x64` 都试过，
+  反而会丢掉别的条目、缺得更多。跨平台的依赖闭包在单平台上生成不出来。
+
+  **解法**：工作流里的安装步骤用 `npm install` 而不是 `npm ci`。
+  `npm install` 会在目标平台上把缺口自己补齐，这正是这种情况的标准解法。
+  **别把它改回 `npm ci`** —— 注释里也写了原因。
+
+  **以后怎么快速定位**：工作流的安装/构建步骤会把报错逐行输出成 GitHub 的「注解」，
+  注解对公开仓库匿名可读（日志正文需要管理员权限）。直接跑：
 
   ```bash
-  node _tools/fix-lockfile-registry.mjs   # 把下载地址换成官方源，版本号和哈希都不变
-  git add package-lock.json && git commit -m "lockfile 换用官方 npm 源" && git push
+  node _tools/fetch-ci-log.mjs cKk038 cKk038.github.io
   ```
 
-  项目里已经放了 `.npmrc` 把源固定在官方源，防止再被写回镜像。所以**不要删 `.npmrc`**；
-  国内想临时提速就用命令行参数覆盖：`npm install --registry=https://registry.npmmirror.com`，
-  但注意别把因此改动的 `package-lock.json` 提交上去（自检脚本会拦）。
+  它会列出最近几次运行、失败在哪一步、以及注解里的原始报错。
 - **页面样式全丢、控制台一堆 404** → 资源路径少了或多了前缀。
   根路径部署（用户站/组织站）不该有 `base`，子路径项目站必须有 `base` 且代码要跟着改（见上）。
 - **改了内容推上去，网站还是旧的** → 先看 Actions 有没有跑完；再确认改的文件真的提交了
@@ -611,9 +625,12 @@ node   _tools/fetch-ci-log.mjs       # 查看 GitHub Actions 最近一次运行�
 - [x] 论文页去掉「按方向筛选」，直接按年份列出全部论文；数据里的 `topic` 字段一并清除
 - [x] 部署流程已就绪：`.github/workflows/deploy.yml` 推送到 `main` 自动构建发布，
       仓库 `cKk038/cKk038.github.io` 已建、Pages 已开（Source = GitHub Actions）
-- [x] 修掉首次部署失败：`package-lock.json` 的下载地址原先指向国内镜像
-      `registry.npmmirror.com`，GitHub 的构建机在美国拉不到，`npm ci` 秒退。
-      已换成官方源并加 `.npmrc` 固定，自检脚本也加了这道检查
+- [x] 修掉首次部署失败（2026-09-21）：CI 的 `npm ci` 在 Linux 上 1 秒内报
+      `Missing: @emnapi/runtime@1.11.3 from lock file` —— Windows 上生成的 lockfile
+      没有记录只有 Linux 需要的 wasm32 平台变体依赖，跨平台补不齐。
+      工作流改用 `npm install` 解决；并顺带做了两处加固：lockfile 的下载地址统一为
+      官方源、`.npmrc` 固定源，避免国内镜像地址混进 CI；安装与构建步骤现在会把报错
+      输出成 GitHub 注解，失败时不用管理员权限也能查到原因
 
 **待实验室确认**
 - [ ] 研究方向的 `points`（子方向条目）是按方向内涵整理的，需确认表述准确

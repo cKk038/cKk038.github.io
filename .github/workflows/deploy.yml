@@ -36,10 +36,43 @@ jobs:
           cache: npm
 
       - name: 安装依赖
-        run: npm ci
+        # 这里用 npm install，不用 npm ci —— 是排查后专门改的，别改回去。
+        #
+        # npm ci 会严格校验 lockfile 与 package.json 严丝合缝，缺任何一个包就直接退出。
+        # 而这份 lockfile 是在 Windows 上生成的，它没记录只有 Linux 才需要的 wasm32
+        # 平台变体依赖（@emnapi/runtime、@emnapi/core 等，来自 sharp 与 Vite 的 wasm
+        # 回退包）。结果就是本地 npm ci 一切正常，一到 Linux 构建机就在 1 秒内报
+        # "Missing: … from lock file" 失败。这个缺口在 Windows 上补不齐
+        # （试过重新生成 lockfile、加 --os=linux，反而缺得更多）。
+        # npm install 会在目标平台上把这些缺口自己补齐，是这种情况的标准解法。
+        # 可复现性略降一点，换来的是能跑通。
+        shell: bash
+        run: |
+          if npm install --no-audit --no-fund > /tmp/install.log 2>&1; then
+            tail -n 3 /tmp/install.log
+            exit 0
+          fi
+          cat /tmp/install.log
+          # 把报错逐行做成「注解」。注解对公开仓库匿名可读，而日志正文需要仓库管理员
+          # 权限才能看到 —— 这样以后构建失败时不用登录也能定位原因。
+          # （% 在注解里有特殊含义，先转义成 %25 再输出。）
+          tail -n 10 /tmp/install.log | sed 's/%/%25/g' | while IFS= read -r line; do
+            printf '::error::%s\n' "$line"
+          done
+          exit 1
 
       - name: 构建静态站点
-        run: npm run build
+        shell: bash
+        run: |
+          if npm run build > /tmp/build.log 2>&1; then
+            tail -n 5 /tmp/build.log
+            exit 0
+          fi
+          cat /tmp/build.log
+          tail -n 10 /tmp/build.log | sed 's/%/%25/g' | while IFS= read -r line; do
+            printf '::error::%s\n' "$line"
+          done
+          exit 1
 
       - name: 配置 Pages
         uses: actions/configure-pages@v5

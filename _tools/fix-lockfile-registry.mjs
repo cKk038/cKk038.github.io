@@ -7,8 +7,10 @@ import fs from 'node:fs';
  * 的 tarball 内容一致，哈希仍然对得上；万一不一致，npm ci 会直接报
  * integrity 错误，不会静默装错。所以这个改写是安全且可验证的。
  *
- * 之所以要改：GitHub 的构建机在美国，拉 registry.npmmirror.com 会失败，
- * 而本机（国内）拉得好好的，导致「本地能构建、CI 秒退」这类难查的问题。
+ * 这是一道「加固」而不是某个已发生故障的修复：下载地址统一成官方源，
+ * lockfile 在任何地方都能装，CI（在海外）不必去拉国内的镜像。
+ * 注意首次部署失败另有原因（lockfile 缺 Linux 的 wasm32 变体依赖），
+ * 见 README「常见坑」与 .github/workflows/deploy.yml 里的注释。
  */
 
 const NGOs = [

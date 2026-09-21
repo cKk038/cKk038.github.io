@@ -179,9 +179,10 @@ try {
 }
 
 /* ── 5. lockfile 的下载地址不能指向国内镜像 ────────────────
- * GitHub Actions 的构建机在美国，拉 registry.npmmirror.com 会失败，
- * 而国内本地拉它完全正常 —— 结果就是「本地能构建、CI 的 npm ci 秒退」。
- * 这个坑一旦踩了很难查，所以在部署前直接拦下来。
+ * 这是一道加固检查：下载地址统一成官方源，lockfile 才能在任何地方安装，
+ * CI（在海外）也不必去拉国内的镜像。
+ * 注意：首次部署失败的真正原因不是这个，而是 lockfile 缺 Linux 的
+ * wasm32 变体依赖 —— 见 README「常见坑」。
  */
 
 try {
@@ -205,11 +206,11 @@ try {
     const detail = [...found].map(([m, c]) => `${m}（${c} 条）`).join('、');
     problems.push(
       `package-lock.json 里有下载地址指向国内镜像：${detail}\n` +
-        '    GitHub 的构建机在美国，拉这些镜像会失败，npm ci 会直接退出。\n' +
+        '    这样 lockfile 在海外机器（比如 GitHub 的构建机）上装不了。\n' +
         '    修法：node _tools/fix-lockfile-registry.mjs（换成官方源，版本与哈希都不变）',
     );
   } else {
-    notes.push('lockfile 的下载地址均为官方源（CI 能正常拉取）');
+    notes.push('lockfile 的下载地址均为官方源（任何机器都能装）');
   }
 } catch (e) {
   problems.push(`读取 package-lock.json 失败：${e.message}`);
