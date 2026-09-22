@@ -17,7 +17,9 @@ interface Props {
 const { lang } = Astro.props;
 
 const pageTitle = t(ui.research.pageTitle, lang);
-const selected = selectedPublications(8);
+// 不设数量上限：页面展示 src/data/publications.ts 里标了 selected 的全部论文
+// （曾写死 selectedPublications(8)，代表性论文改成 10 篇后就不再适用）
+const selected = selectedPublications();
 ---
 
 <BaseLayout lang={lang} path="/research/" title={pageTitle}>

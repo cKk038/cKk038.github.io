@@ -18,7 +18,6 @@ interface Props {
 const { lang } = Astro.props;
 
 const labName = lang === 'zh' ? site.nameZh : site.nameEn;
-const affiliation = lang === 'zh' ? site.affiliationZh : site.affiliationEn;
 const slogan = lang === 'zh' ? site.sloganZh : site.sloganEn;
 const aboutParagraphs = lang === 'zh' ? site.aboutZh : site.aboutEn;
 const heroLinkText = lang === 'zh' ? site.heroLinkZh : site.heroLinkEn;
@@ -34,7 +33,6 @@ const heroLinkText = lang === 'zh' ? site.heroLinkZh : site.heroLinkEn;
         <div class="hero__divider" aria-hidden="true"></div>
 
         <p class="hero__lab">{labName}</p>
-        <p class="hero__lab-sub">{affiliation}</p>
 
         <a class="hero__affiliation" href={site.heroLinkUrl} target="_blank" rel="noopener noreferrer">
           {heroLinkText}

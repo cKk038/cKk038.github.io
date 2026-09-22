@@ -141,8 +141,9 @@ export const site = {
 
   /* ────────────────── 页脚「相关链接」（外链） ────────────────── */
   links: [
-    { labelZh: '西安电子科技大学', labelEn: 'Xidian University', url: 'https://www.xidian.edu.cn/' },
+    { labelZh: 'ISN全国重点实验室', labelEn: 'ISN National Key Laboratory', url: 'https://isn.xidian.edu.cn/index.htm' },
     { labelZh: '通信工程学院', labelEn: 'School of Telecommunications Engineering', url: 'https://ste.xidian.edu.cn/' },
+    { labelZh: '杭州研究院', labelEn: 'Hangzhou Research Institute', url: 'https://hz.xidian.edu.cn/' },
     { labelZh: 'XI-Lab GitHub', labelEn: 'XI-Lab on GitHub', url: 'https://github.com/XI-Lab-XDU' },
   ],
 

@@ -199,7 +199,7 @@ IEEE TIP 正式版插图**（作者本人对自己论文的插图通常有使用
 
 ### 5. 论文 `src/data/publications.ts`
 
-**目前是 2022 年至今的 100 篇，全部从杨曦老师的 Google Scholar 主页导入**，
+**目前是 2022 年至今的 102 篇，全部从杨曦老师的 Google Scholar 主页导入**，
 作者顺序、标题、年份都保持 Google Scholar 原文，没有做任何改写。
 
 **要更新论文列表时：**
@@ -215,16 +215,44 @@ IEEE TIP 正式版插图**（作者本人对自己论文的插图通常有使用
    node _tools/import-scholar.mjs
    ```
 
-导入脚本只做三件**规范化**的事，都会打印报告供核对：
+导入脚本只做两件**规范化**的事，都会打印报告供核对：
 
 | 处理 | 说明 |
 |---|---|
 | 清洗 venue | 去掉 Google Scholar 列表里附带的年份/卷号/期号/页码，只留期刊或会议本名。**不改写名字本身**，只修补 Google Scholar 显示不全导致的截断 |
 | 去重 | 同一篇论文 Google Scholar 有时同时收录中英文两条记录（卷期页完全相同），只保留一条。判定条件很严（年份+卷期页相同 **且** 一条含中文另一条纯英文 **且** 作者人数相同），宁肯留着重复也不误删真论文 |
-| 代表性论文 | 按被引次数把前 8 篇标为 `selected`（会出现在研究页） |
 
-> ⚠️ **`selected` 是脚本按被引次数给的启发式建议，请人工复核。**
->
+> ⚠️ **导入脚本会覆盖 `selected` 标记**（它按被引次数猜 8 篇）。跑完导入后，
+> 代表性论文需要按下面「代表性论文」一节的方法改回来。
+
+### 代表性论文（`selected`）
+
+**由实验室提供的《Selected Publications》清单人工确定，共 10 篇**，不是按被引次数
+自动挑的。清单是根目录下的 `Selected Publications.docx`，用这个脚本读出来：
+
+```bash
+python _tools/extract-docx.py "Selected Publications.docx"          # 看纯文本
+python _tools/extract-docx.py "Selected Publications.docx" --json   # 输出 JSON 便于比对
+```
+
+改 `src/data/publications.ts` 时注意两点：
+
+- **只改 `selected` 这一个字段**，其余 92 条论文的作者/标题保持 Google Scholar 原文不动。
+- 这 10 篇的作者写的是**完整姓名**（如 `Xi Yang, Nannan Wang`），其余条目是
+  Scholar 的缩写形式（`X Yang, N Wang`）—— 因为清单里就是完整姓名，如实照录。
+
+引用格式已按规范校对过，docx 原件里这几处是错的，别照抄回去：
+
+| 原件写法 | 问题 | 改法 |
+|---|---|---|
+| `Xi Yang (杨 曦)*` | 中文名中间多一个空格；`*`（通讯作者）、`#`（共同一作）角标没有图例说明 | 去掉中文名与角标，直接写 `Xi Yang` |
+| `IEEE International Conference on Computer Vision (ICCV)` | 正式名称漏了 `/CVF` | `IEEE/CVF International Conference on Computer Vision (ICCV)` |
+| `𝒟ℐℋ-CLIP` | 花体字符，检索和渲染都不可靠 | 写成 `DIH-CLIP` |
+| `2025. 11 Jun-15 Jun, Nashville, TN, USA.(Highlight)` | 会议日期/城市不属于引用；`(Highlight)` 前缺空格 | 一并删除（站点引用格式为「作者: 标题. 期刊, 年份.」） |
+| `https://github.com/code/FANet` | 经 GitHub API 核实**仓库不存在（404）** | 不收录该链接 |
+
+（其余 5 个代码仓库链接都核实过真实存在，已作为 `links` 里的 `code` 按钮收录。）
+
 > 论文页**只按年份分组展示，不做方向分类** —— 曾经有一套按关键词把论文归入研究方向的
 > `topic` 字段和「按方向筛选」按钮，已按要求移除，数据里的 `topic` 也一并清掉了。
 > 如果以后想恢复筛选，删掉的规则逻辑在 `import-scholar.mjs` 里有说明。
@@ -246,6 +274,7 @@ IEEE TIP 正式版插图**（作者本人对自己论文的插图通常有使用
   （按钮文字在 `src/i18n/ui.ts` 里改）。导入时会自动给每条加上 Scholar 链接，
   这样列表里每篇论文都能追溯到出处。
 - 论文页会**按年份自动分组**，不需要手动排序。
+- 研究页展示**全部**标了 `selected` 的论文（不再写死数量）。
 - 展示范围由 `MIN_YEAR`（默认 2022）控制。
 
 ### 6. 换 logo 和图片
@@ -478,6 +507,7 @@ node   _tools/check-freshness.mjs    # 检查 dist/ 是不是比 src/ 旧（推�
 node   _tools/check-deploy.mjs       # 部署前自检：资源路径、大小写、site 配置、依赖源
 node   _tools/fix-lockfile-registry.mjs  # 把 lockfile 的下载地址从国内镜像换成官方源
 node   _tools/fetch-ci-log.mjs       # 查看 GitHub Actions 最近一次运行的失败步骤
+python _tools/extract-docx.py        # 读 Selected Publications.docx（代表性论文清单）
 ```
 
 要求 Node.js ≥ 20。辅助脚本需要 Python 3 + Pillow + numpy
@@ -600,7 +630,8 @@ node   _tools/fetch-ci-log.mjs       # 查看 GitHub Actions 最近一次运行�
    ├─ check-freshness.mjs     ← 检查 dist/ 是否比 src/ 旧
    ├─ check-deploy.mjs        ← 部署前自检（资源路径 / 大小写 / site 配置 / 依赖源）
    ├─ fix-lockfile-registry.mjs ← lockfile 下载地址换回官方 npm 源
-   └─ fetch-ci-log.mjs        ← 查 GitHub Actions 最近一次运行的失败步骤
+   ├─ fetch-ci-log.mjs        ← 查 GitHub Actions 最近一次运行的失败步骤
+   └─ extract-docx.py         ← 读 Selected Publications.docx（代表性论文清单）
 ```
 
 ---
@@ -632,13 +663,24 @@ node   _tools/fetch-ci-log.mjs       # 查看 GitHub Actions 最近一次运行�
       官方源、`.npmrc` 固定源，避免国内镜像地址混进 CI；安装与构建步骤现在会把报错
       输出成 GitHub 注解，失败时不用管理员权限也能查到原因
 
+- [x] 首页页脚「相关链接」改为四项（2026-09-22）：ISN全国重点实验室 / 通信工程学院 /
+      杭州研究院 / XI-Lab GitHub。原文的「西安电子科技大学」一项移除（首页 Hero 里
+      的西安电子科技大学链接保留），如需要保留在这一列表里请说一声
+- [x] 首页 Hero 删掉「西安电子科技大学 · 通信工程学院」那行，保留下方链接
+- [x] 顶部导航项在桌面端居中（原来靠 flex 的 space-between，左右宽度不等所以偏）
+- [x] 代表性论文换成实验室《Selected Publications》清单里的 10 篇，引用格式已校对；
+      新增 2 篇（ECCV 2026、ACM MM 2026），论文总数 100 → 102
+
 **待实验室确认**
 - [ ] 研究方向的 `points`（子方向条目）是按方向内涵整理的，需确认表述准确
 - [ ] 首页「关于我们」第 1 段里的「教师 1 人、在读研究生 27 人」需与实验室口径核对
 - [ ] **第 ① 个方向（多源数据智能分析）的配图许可需确认**：用的是 IEEE TIP 论文的
       arXiv 版（CC BY-NC-SA 4.0）。建议换成正式版插图或换成一篇 CC BY 论文的图
-- [ ] 论文的 `selected`（8 篇代表性论文）是脚本按被引次数给的**建议值**，需复核
+- [ ] 代表性论文里原本标注的「共同一作 `#`」「通讯作者 `*`」「CVPR Highlight」等信息，
+      因站点没有图例机制被去掉了 —— 若想在页面上体现，需加一段图例说明
 - [ ] 如果实验室有微信公众号，把二维码放到 `public/img/` 并填 `site.ts` 的 `contact.wechatQr`
+- [ ] 论文列表只有 10 篇代表性论文用了完整姓名，其余 92 篇是 Scholar 的缩写形式。
+      若想全表统一成完整姓名，需要用 Scholar 之外的来源逐条补（工作量大，非必要不建议）
 
 **可选**
 - [ ] 想换成别的论文插图：覆盖 `public/img/research/<方向id>.png` 即可，代码不用动

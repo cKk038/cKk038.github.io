@@ -3,7 +3,7 @@
  *
  * 数据来源：杨曦老师的 Google Scholar 主页
  * （https://scholar.google.com/citations?user=W5c-LSYAAAAJ），
- * 当前收录 **2022 年及以后的 100 篇**，由 _tools/import-scholar.mjs 导入。
+ * 当前收录 **2022 年及以后的 102 篇**，由 _tools/import-scholar.mjs 导入。
  *
  * ── 更新流程 ────────────────────────────────────────────────
  *   1. 浏览器打开上面的 Scholar 主页，点「显示更多」把列表展开完整
@@ -11,9 +11,20 @@
  *   2. 把每行数据读出来存成 _tools/scholar-raw.json
  *   3. 运行：node _tools/import-scholar.mjs
  *
- * importer 只做三类**规范化**：清洗 venue 里的卷号页码、去掉中英文重复记录、
- * 按被引次数给 `selected` 打标。**作者顺序、标题、年份一律保持 Scholar 原文**，
- * 不做任何改写，符合引用规范。
+ * importer 只做两类**规范化**：清洗 venue 里的卷号页码、去掉中英文重复记录。
+ * **作者顺序、标题、年份一律保持 Scholar 原文**，不做任何改写，符合引用规范。
+ *
+ * ⚠️ 注意：importer 会重置 `selected` 标记（按被引次数猜）。运行它之后，
+ *    代表性论文会被覆盖成它猜的那 8 篇 —— 需要按下面的方式改回来。
+ *
+ * ── 代表性论文（selected）────────────────────────────────────
+ * 由实验室提供的《Selected Publications》清单人工确定（2026-09 更新），共 10 篇，
+ * 不是按被引次数自动挑的。清单是 .docx，用这个脚本读：
+ *
+ *     python _tools/extract-docx.py "Selected Publications.docx"
+ *
+ * 这 10 篇的作者用了完整姓名（其余条目是 Scholar 的缩写形式），
+ * 因为清单里就是这么写的；其余字段与全表保持一致。
  *
  * ── 手动添加一条的格式 ──────────────────────────────────────
  *   {
@@ -56,13 +67,31 @@ export const MIN_YEAR = 2022;
 
 export const publications: Publication[] = [
   // 由 _tools/import-scholar.mjs 从 Google Scholar 导出（抓取日：2026-09-21）
-  // 共 100 条，2022 年及以后；作者/标题/年份保持 Google Scholar 原文
-  // selected 是脚本按被引次数给的**建议值**，请人工复核
+  // 共 102 条，2022 年及以后；作者/标题/年份保持 Google Scholar 原文
+  // selected = 代表性论文，由实验室提供的 Selected Publications 清单确定（2026-09 更新），
+  // 不是脚本按被引次数猜的；引用格式已按规范校对过
   {
-    authors: 'X Yin, J Wang, X Yang, M Xu, X Gu, N Wang',
+    authors: 'Pengyu Chen, Xi Yang, Nannan Wang',
+    title: 'SGP2: coarse-to-fine controllable multimodal remote sensing image generation',
+    venue: 'European Conference on Computer Vision (ECCV)',
+    year: 2026,
+    selected: true,
+    links: [{ kind: 'code', url: 'https://github.com/cpy0029/MMEarth-1.5M' }],
+  },
+  {
+    authors: 'Hanyu Xing, Fei Gao, Xi Yang, Ziyun Li, Pengyu Chen, Nannan Wang',
+    title: 'Imagine a reference: MLLM-augmented versatile image stylization',
+    venue: 'ACM International Conference on Multimedia (ACM MM)',
+    year: 2026,
+    selected: true,
+    links: [{ kind: 'code', url: 'https://github.com/Vincotto/MAIST' }],
+  },
+  {
+    authors: 'Xingyilang Yin, Jiale Wang, Xi Yang, Mutian Xu, Xu Gu, Nannan Wang',
     title: 'Unleashing the multi-view fusion potential: noise correction in VLM for open-vocabulary 3D scene understanding',
     venue: 'IEEE Transactions on Multimedia',
     year: 2026,
+    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:AXPGKjj_ei8C' }],
   },
   {
@@ -73,11 +102,12 @@ export const publications: Publication[] = [
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:q3oQSFYPqjQC' }],
   },
   {
-    authors: 'X Yang, Q Xie',
-    title: 'Styleproto: Style-augmented prototype learning for cross-domain few-shot object detection',
+    authors: 'Xi Yang, Quantao Xie',
+    title: 'StyleProto: style-augmented prototype learning for cross-domain few-shot object detection',
     venue: 'Proceedings of the AAAI Conference on Artificial Intelligence',
     year: 2026,
-    links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:5ugPr518TE4C' }],
+    selected: true,
+    links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:5ugPr518TE4C' }, { kind: 'code', url: 'https://github.com/Wildfire-det/StyleProto' }],
   },
   {
     authors: 'X Yang, H Shi, F Gao, N Wang',
@@ -87,10 +117,11 @@ export const publications: Publication[] = [
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:1qzjygNMrQYC' }],
   },
   {
-    authors: 'X Yang, Q Xie, Y Yang, N Wang',
-    title: 'Active Style-Content Dual-Branch Domain Adaptation for Semi-Supervised SAR Object Detection',
+    authors: 'Xi Yang, Quantao Xie, Yirong Yang, Nannan Wang',
+    title: 'Active style-content dual-branch domain adaptation for semi-supervised SAR object detection',
     venue: 'IEEE Transactions on Image Processing',
     year: 2026,
+    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:wbdj-CoPYUoC' }],
   },
   {
@@ -199,10 +230,11 @@ export const publications: Publication[] = [
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:SP6oXDckpogC' }],
   },
   {
-    authors: 'S Duan, X Yang, N Wang',
+    authors: 'Songsong Duan, Xi Yang, Nannan Wang',
     title: 'Multi-label prototype visual spatial search for weakly supervised semantic segmentation',
     venue: 'IEEE/CVF Conference on Computer Vision and Pattern Recognition',
     year: 2025,
+    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:D_sINldO8mEC' }],
   },
   {
@@ -255,11 +287,12 @@ export const publications: Publication[] = [
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:XiSMed-E-HIC' }],
   },
   {
-    authors: 'S Duan, X Yang, N Wang',
-    title: '𝒟ℐℋ-CLIP: Unleashing the Diversity of Multi-Head Self-Attention for Training-Free Open-Vocabulary Semantic Segmentation',
+    authors: 'Songsong Duan, Xi Yang, Nannan Wang',
+    title: 'DIH-CLIP: unleashing the diversity of multi-head self-attention for training-free open-vocabulary semantic segmentation',
     venue: 'IEEE/CVF International Conference on Computer Vision (ICCV)',
     year: 2025,
-    links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:eJXPG6dFmWUC' }],
+    selected: true,
+    links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:eJXPG6dFmWUC' }, { kind: 'code', url: 'https://github.com/duan-song/DiH-CLIP' }],
   },
   {
     authors: 'L Liu, N Wang, C Chen, D Liu, X Yang, X Gao, T Liu',
@@ -325,10 +358,11 @@ export const publications: Publication[] = [
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:BrmTIyaxlBUC' }],
   },
   {
-    authors: 'X Yang, W Dong, X Wang, D Cheng, N Wang',
-    title: 'FA-Net: A Feature Alignment Network for Video-Based Visible-Infrared Person Re-Identification',
+    authors: 'Xi Yang, Wenjiao Dong, Xian Wang, De Cheng, Nannan Wang',
+    title: 'FA-Net: a feature alignment network for video-based visible-infrared person re-identification',
     venue: 'IEEE Transactions on Image Processing',
     year: 2025,
+    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:8AbLer7MMksC' }],
   },
   {
@@ -367,10 +401,11 @@ export const publications: Publication[] = [
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:08ZZubdj9fEC' }],
   },
   {
-    authors: 'J Sun, D Cheng, X Yang, N Wang',
+    authors: 'Jiachen Sun, De Cheng, Xi Yang, Nannan Wang',
     title: 'Dual domain control via active learning for remote sensing domain incremental object detection',
     venue: 'IEEE/CVF International Conference on Computer Vision (ICCV)',
     year: 2025,
+    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=100&pagesize=100&citation_for_view=W5c-LSYAAAAJ:VOx2b1Wkg3QC' }],
   },
   {
@@ -420,7 +455,6 @@ export const publications: Publication[] = [
     title: 'Cooperative separation of modality shared-specific features for visible-infrared person re-identification',
     venue: 'IEEE Transactions on Multimedia',
     year: 2024,
-    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:pqnbT2bcN3wC' }],
   },
   {
@@ -522,11 +556,12 @@ export const publications: Publication[] = [
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:u_35RYKgDlwC' }],
   },
   {
-    authors: 'X Yang, X Gu, X Yin, X Gao',
-    title: 'SA3DIP: Segment Any 3D Instance with Potential 3D Priors',
-    venue: 'The Thirty-eighth Annual Conference on Neural Information Processing Systems',
+    authors: 'Xi Yang, Xu Gu, Xingyilang Yin, Xinbo Gao',
+    title: 'SA3DIP: segment any 3D instance with potential 3D priors',
+    venue: 'Conference on Neural Information Processing Systems (NeurIPS)',
     year: 2024,
-    links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:NhqRSupF_l8C' }],
+    selected: true,
+    links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:NhqRSupF_l8C' }, { kind: 'code', url: 'https://github.com/ryang41/sa3dip' }],
   },
   {
     authors: 'X Yang, Q Zhou, Z Wei, H Liu, N Wang, X Gao',
@@ -568,7 +603,6 @@ export const publications: Publication[] = [
     title: 'Dual-adversarial representation disentanglement for visible infrared person re-identification',
     venue: 'IEEE Transactions on Information Forensics and Security',
     year: 2023,
-    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:35N4QoGY0k4C' }],
   },
   {
@@ -681,7 +715,6 @@ export const publications: Publication[] = [
     title: 'Towards semi-supervised deep facial expression recognition with an adaptive confidence margin',
     venue: 'IEEE/CVF Conference on Computer Vision and Pattern Recognition',
     year: 2022,
-    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:bEWYMUwI8FkC' }],
   },
   {
@@ -689,7 +722,6 @@ export const publications: Publication[] = [
     title: 'SAR-to-optical image translation based on improved CGAN',
     venue: 'Pattern Recognition',
     year: 2022,
-    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:-f6ydRqryjwC' }],
   },
   {
@@ -697,7 +729,6 @@ export const publications: Publication[] = [
     title: 'FG-GAN: A fine-grained generative adversarial network for unsupervised SAR-to-optical image translation',
     venue: 'IEEE Transactions on Geoscience and Remote Sensing',
     year: 2022,
-    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&citation_for_view=W5c-LSYAAAAJ:_Qo2XoVZTnwC' }],
   },
   {
@@ -705,7 +736,6 @@ export const publications: Publication[] = [
     title: 'Crs-cont: a well-trained general encoder for facial expression analysis',
     venue: 'IEEE Transactions on Image Processing',
     year: 2022,
-    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:maZDTaKrznsC' }],
   },
   {
@@ -713,7 +743,6 @@ export const publications: Publication[] = [
     title: 'Object detection for aerial images with feature enhancement and soft label assignment',
     venue: 'IEEE Transactions on Geoscience and Remote Sensing',
     year: 2022,
-    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:RHpTSmoSYBkC' }],
   },
   {
@@ -721,7 +750,6 @@ export const publications: Publication[] = [
     title: 'An efficient and lightweight CNN model with soft quantification for ship detection in SAR images',
     venue: 'IEEE Transactions on Geoscience and Remote Sensing',
     year: 2022,
-    selected: true,
     links: [{ kind: 'scholar', url: 'https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=W5c-LSYAAAAJ&cstart=20&pagesize=80&citation_for_view=W5c-LSYAAAAJ:k_IJM867U9cC' }],
   },
   {

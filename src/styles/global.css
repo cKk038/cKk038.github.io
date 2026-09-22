@@ -329,6 +329,27 @@ body[data-lang='zh'] .eyebrow {
   transition: height 0.35s ease;
 }
 
+/* 桌面端让「首页 / 团队 / 研究 / 论文」这组真正居中。
+   光靠 flex 的 space-between 是居不了中的：左边品牌区和右边语言按钮的宽度不相等，
+   中间那组会被挤偏。所以改成三列网格，左右两列强制等宽，中间那列才落在容器正中。
+   列宽必须写 minmax(0, 1fr) 而不是 1fr —— 1fr 的最小值是 auto，品牌区的固有宽度
+   会把左列撑宽，中间又会偏回去。
+   窄屏是汉堡菜单，用不到这套（切在下方 991.98px 断点）。 */
+@media (min-width: 992px) {
+  .navbar-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .nav-links {
+    justify-content: center;
+  }
+
+  .nav-actions {
+    justify-self: end;
+  }
+}
+
 .site-navbar.is-scrolled .navbar-inner {
   height: var(--nav-h-scrolled);
 }
@@ -601,15 +622,7 @@ body[data-lang='zh'] .eyebrow {
   font-size: clamp(1.05rem, 0.9rem + 0.8vw, 1.5rem);
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 0.5rem;
-}
-
-.hero__lab-sub {
-  font-size: clamp(0.8rem, 0.72rem + 0.3vw, 0.95rem);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  /* 隶属机构那行（原 .hero__lab-sub）已按要求去掉，它原来的下边距由这里承担 */
   margin-bottom: 2rem;
 }
 
