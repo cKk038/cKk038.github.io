@@ -102,13 +102,13 @@ export const site = {
    * 首页「关于我们」底部的两个大数字，value 会做滚动动画。
    *
    * 这两个数字要与事实对得上，改数据时记得同步：
-   *   · 论文数 = Google Scholar 主页收录总数（2026-09 抓取为 152 条）
+   *   · 论文数 = Google Scholar 主页收录总数（2026-09 为 153 条）
    *   · 研究生 = 在读博士生 + 在读硕士生（src/data/people.ts 里 7 + 20 = 27）
    * 改完可以跑 node _tools/verify-roster.mjs 复核。
    */
   stats: [
     {
-      value: 152,
+      value: 153,
       suffix: '',
       labelZh: 'Google Scholar 收录',
       labelEn: 'On Google Scholar',
