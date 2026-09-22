@@ -160,42 +160,40 @@ contact: {
     { zh: '跨模态特征对齐与融合', en: 'Cross-modal feature alignment and fusion' },
   ],
   icon: 'bi-diagram-3',                 // Bootstrap Icons 图标名
-  image: '/img/research/multi-source.png',   // 论文框架图；不给则只显示图标与文字
-  paper: {                              // 图注里标出的论文出处（CC BY 要求署名）
-    title: '…', venue: '…', url: '…',
-  },
+  image: '/img/research/multi-source.svg',   // 自绘网络图；不给则只显示图标与文字
 },
 ```
 
-#### 配图由脚本处理，素材是实验室论文里的框架图
+#### 配图是自绘的矢量网络图
 
-**不是自绘示意图**，而是从实验室代表性论文里取的 framework 图，脚本只做裁剪白边、
-缩放、压缩，并生成版权说明：
+**不是论文里的 framework 图**（2026-09 按要求换掉了：论文插图是为具体方法服务的，
+缩到卡片宽度后小字全糊，而且跟「这个方向在研究什么」对不上）。现在是按方向内涵
+画的通用网络图，由脚本生成成 SVG：
 
 ```bash
-node _tools/fetch-paper-figs.mjs        # 下载 MDPI 论文插图（按文章号拼 URL）
-python _tools/build-research-figures.py # 裁白边、缩放、写 research-CREDITS.md
+node _tools/build-research-diagrams.mjs     # 生成四张 SVG + research-CREDITS.md
+node _tools/_preview-diagrams.mjs           # 可选：拼成预览页，用浏览器肉眼检查
 ```
 
-| 方向 | 依据论文 | 图 | 许可 |
-|---|---|---|---|
-| 多源数据智能分析 | *Lightweight RGB-D Salient Object Detection* (IEEE TIP 2025) | arXiv 版 Fig. 2 | **CC BY-NC-SA 4.0** ⚠️ |
-| 四维场景生成理解 | *3D Point Cloud Shape Generation with Collaborative Learning of GAN and Auto-Encoder* (Remote Sensing 2024) | Fig. 2 | CC BY 4.0 |
-| 具身智能与智能体 | *Adaptive Granularity-Fused Keypoint Detection for 6D Pose Estimation of Space Targets* (Remote Sensing 2024) | Fig. 2 | CC BY 4.0 |
-| 遥感目标智能感知 | *Coastal Ship Tracking with Memory-Guided Perceptual Network* (Remote Sensing 2023) | Fig. 2 | CC BY 4.0 |
+为什么用 SVG：矢量，点开放大不糊；配色精确用站点的设计令牌（品牌蓝 `#2E9BD6` +
+海军蓝 `#0E1F38`），和页面风格一致；体积只有 6–10 KB；动画用 CSS 关键帧，
+且遵循系统的「减少动态效果」设置自动静止。
 
-**三篇 MDPI《Remote Sensing》是 CC BY 4.0 开放获取，署名即可自由使用。**
-第 ① 篇用的是 arXiv 版本，许可是 **CC BY-NC-SA 4.0**（允许非商业使用 + 署名 +
-相同方式共享）—— 实验室主页属非商业用途，符合要求，但**更稳妥的做法是换成
-IEEE TIP 正式版插图**（作者本人对自己论文的插图通常有使用权）。详见
-[`public/img/research/research-CREDITS.md`](public/img/research/research-CREDITS.md)。
+四张图各有动画，**但都只改描边高亮，不改透明度** —— 淡入淡出会让内容在某些时刻
+整体缺失（随手一瞥就看到空列表），和「内容要清晰」冲突，所以不用那种做法。
 
-因为论文插图里的字很密，缩到卡片宽度后读不清，所以**图片整块做成了链接，
-点开看原图**；卡片底部的图注也会标出论文出处（CC BY 的署名要求）。
+图里的文字是英文技术术语（`SAR` / `RGB` / `3D` …）：站点是中英双语，图里写字就得
+写两套，而这些术语在中英文技术语境里写法一致，避免为两种语言各维护一张图。
+
+**改图改生成脚本，不要直接编辑 `.svg`** —— 它们是生成产物，下次运行会被覆盖。
+因为图是自己画的，**不涉及任何第三方版权**，卡片底部也不再需要论文出处那一行。
+详见 [`public/img/research/research-CREDITS.md`](public/img/research/research-CREDITS.md)。
+
+卡面宽度下文字仍然偏小（图是按 1280px 宽画的，卡片里只显示到约 580px），
+所以**图片整块做成了链接，点开看原图**。为此研究方向卡片在桌面端改成了**左右等宽**
+（原来 5:7），配图那一栏更大、字更清楚。
 
 > ⚠️ `points`（子方向条目）是按方向内涵整理的，**请实验室确认表述是否准确**。
-> 想换成别的论文插图：把新图放到 `public/img/research/<方向id>.png` 覆盖即可，
-> 代码不用动（`research.ts` 里的 `image` 字段指向这些文件名）。
 
 ### 5. 论文 `src/data/publications.ts`
 
@@ -309,40 +307,44 @@ python _tools/optimize-og.py       # 生成完分享图后压一次体积（可�
 
 | 文件 | 用途 | 建议尺寸 |
 |---|---|---|
-| `public/img/about-1a.jpg` + `about-1b.jpg` | 首页拼贴第 1 格，两张交叉淡入 | 4:3，640×480 |
-| `public/img/about-2.jpg` … `about-4.jpg` | 首页拼贴其余三格 | 4:3，640×480 |
-| `public/img/research/*.svg` | 研究方向配图（论文风格示意图） | 4:3，800×600 |
+| `public/img/about-1.jpg` … `about-4.jpg` | 首页拼贴四格（按方向顺序） | 4:3，640×480 |
+| `public/img/research/*.svg` | 研究方向配图（自绘网络图，**由脚本生成，别手改**） | viewBox 1280×800 |
 | `public/img/people/*.jpg` | 教师头像 | 3:4 竖版最佳 |
 
 ### 首页拼贴的图从哪来
 
-**四格分别对应实验室的四个研究方向**，全部来自 NASA 图片库、属于公有领域
+**四格按顺序分别对应实验室的四个研究方向**，全部来自 NASA 图片库、属于公有领域
 （美国联邦政府作品），可自由使用与再分发。出处、NASA ID、说明页链接都记录在
 [`public/img/about-CREDITS.md`](public/img/about-CREDITS.md)（由脚本自动生成）。
 
 | 格 | 对应方向 | 影像 |
 |---|---|---|
-| 1 | **四维场景生成理解** | 拉斯维加斯 1984 / 2010 两期 Landsat 影像（**交叉淡入的动态效果**），同一场景随时间的演化 |
-| 2 | **多源数据智能分析** | 荷兰 Flevoland 三频（X/C/L 波段）假彩色 SAR，三个频段合成 |
+| 1 | **多源数据智能分析** | 韦德尔海（南极）三频假彩色 SAR —— X/C/L 三个波段同时成像再合成，本身就是「多源融合」 |
+| 2 | **四维场景生成理解** | SIR-C 加州 Mammoth 三维地形透视，带明显景深 |
 | 3 | **具身智能与智能体** | 国际空间站上的 Robonaut 2 人形机器人 |
-| 4 | **遥感目标智能感知** | 东京与东京湾的 Landsat 影像，城市与港口设施清晰可辨 |
+| 4 | **遥感目标智能感知** | 轨道拍摄的沿海城市白天光学影像，港口、机场跑道、农田等目标清晰可辨 |
 
 重新生成：
 
 ```bash
 node _tools/fetch-candidates.mjs     # 从 NASA 下载原始素材到 _candidates/
-python _tools/build-about-images.py  # 裁成 4:3、压缩、加年份角标
+python _tools/build-about-images.py  # 裁成 4:3、压缩
 ```
 
-裁切参数写在 `build-about-images.py` 的 `STATIC` 列表里 —— 原图有带元数据条的
-（Flevoland 顶部一整条）、有上下两期对照的（拉斯维加斯、东京），所以用显式裁切框
-而不是自动居中裁。
+裁切参数写在 `build-about-images.py` 的 `STATIC` 列表里。**用显式裁切框而不是自动
+居中裁**，因为这几张原图各有各的干扰：SAR 那张有黑边、顶部元数据条和右上角插图；
+SIR-C 三维图上方一大片纯蓝天；鱼眼机器人照片四角是黑的、右侧还有航天员入镜。
 
-**第 1 格的「动态图」是怎么做的**：不是 GIF 也不是动态 WebP，而是**两张同机位
-JPEG + CSS 交叉淡入淡出**（`global.css` 里的 `.collage-fade` 与 `@keyframes collageFade`）。
-这样同样效果体积小 5 倍（341 KB vs 593 KB），过渡更平滑，而且能跟随系统的
-「减少动态效果」设置自动静止成一张。想换成别的对比图，只要
-`src/config/site.ts` 里 `aboutImages[0]` 同时填 `src` 和 `srcAlt` 即可。
+**这几张是怎么挑出来的**：先用 `_tools/_fetch-thumbs.mjs` 批量下载候选缩略图，
+再用 `_tools/_contact-sheet.py` 拼成带编号的拼版图，一次看完所有候选再定。
+换图时照这个流程走（NASA 图片库有 API，[images-api.nasa.gov](https://images-api.nasa.gov/search?q=landat&media_type=image)）。
+
+**动态效果这一轮没用**：早先第 1 格是两张拉斯维加斯影像交叉淡入，用来表现
+「随时间变化」。现在四格各对应一个方向，凑不出同一场景的两个状态，所以都是静态的。
+机制仍然保留在 `global.css` 的 `.collage-fade` 与 `@keyframes collageFade` 里 ——
+给 `src/config/site.ts` 的某一格同时填 `src` 和 `srcAlt` 就会自动生效。
+用「两张 JPEG + CSS 交叉淡入」而不是 GIF／动态 WebP：同样效果体积小 5 倍
+（341 KB vs 593 KB），过渡更平滑，还能跟随系统的「减少动态效果」设置自动静止。
 
 ---
 
@@ -493,10 +495,13 @@ npm run preview      # 本地预览构建产物（发布前建议跑一次）
 
 # 辅助脚本（一般不需要跑）
 python _tools/extract-logo.py        # 从 docs/brand/XI-Lab_logo.pdf 重新提取 logo
-node   _tools/fetch-paper-figs.mjs     # 下载 MDPI 论文的框架图（方向配图素材）
-python _tools/build-research-figures.py # 裁白边、缩放、写研究配图版权说明
 node   _tools/fetch-candidates.mjs   # 从 NASA 重新下载首页配图素材
-python _tools/build-about-images.py  # 重新生成首页拼贴（含动态效果的两张）
+python _tools/build-about-images.py  # 把素材裁成 4:3 并压缩，生成首页拼贴
+node   _tools/build-research-diagrams.mjs  # 生成研究方向的自绘网络图（SVG）
+node   _tools/_fetch-thumbs.mjs      # 选图用：批量下载 NASA 候选缩略图
+python _tools/_contact-sheet.py      # 选图用：把候选拼成带编号的拼版图
+node   _tools/_preview-diagrams.mjs  # 检查用：把四张网络图拼成预览页
+node   _tools/_verify-images.mjs     # 检查用：产物图片引用 + SVG 是否自包含
 node   _tools/import-scholar.mjs     # 从 Google Scholar 抓取结果导入论文
 python _tools/optimize-og.py         # 压缩分享图
 node   _tools/check-seo.mjs          # 检查各页 title / canonical / hreflang
@@ -510,8 +515,15 @@ node   _tools/fetch-ci-log.mjs       # 查看 GitHub Actions 最近一次运行�
 python _tools/extract-docx.py        # 读 Selected Publications.docx（代表性论文清单）
 ```
 
-要求 Node.js ≥ 20。辅助脚本需要 Python 3 + Pillow + numpy
-（提取 logo 还要 `pdftocairo`；下载 NASA 素材需要联网）。
+要求 Node.js ≥ 20。辅助脚本需要 Python 3 + Pillow（提取 logo 还要 `pdftocairo`；
+下载 NASA 素材需要联网）。改动配图后建议用无头 Chrome 截图自查，
+本机命令示例（把 URL 换成 `http://localhost:4321/research/`）：
+
+```bash
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new --disable-gpu ^
+  --hide-scrollbars --virtual-time-budget=6000 --window-size=1440,2800 ^
+  --screenshot=shot.png http://localhost:4321/research/
+```
 
 ### ⚠️ 改完内容刷新看不到变化？多半是跑错了服务器
 
@@ -617,10 +629,12 @@ python _tools/extract-docx.py        # 读 Selected Publications.docx（代表�
 │  └─ brand/XI-Lab_logo.pdf   ← ★ logo 源文件（提取脚本从这里读）
 └─ _tools/                    ← 辅助脚本
    ├─ extract-logo.py         ← 从 PDF 提取 logo / favicon / 图标
-   ├─ fetch-paper-figs.mjs    ← 下载 MDPI 论文插图（研究方向配图素材）
-   ├─ build-research-figures.py ← 裁白边 / 缩放 / 写研究配图版权说明
    ├─ fetch-candidates.mjs    ← 从 NASA 下载首页配图素材
-   ├─ build-about-images.py   ← 裁切 / 压缩 / 加角标，生成首页拼贴
+   ├─ build-about-images.py   ← 裁切 / 压缩，生成首页拼贴
+   ├─ build-research-diagrams.mjs ← 自绘研究方向网络图（SVG，带动画）
+   ├─ _fetch-thumbs.mjs       ← 选图：批量下载 NASA 候选缩略图
+   ├─ _contact-sheet.py       ← 选图：候选拼成带编号的拼版图
+   ├─ _preview-diagrams.mjs   ← 检查：四张网络图拼成预览页
    ├─ import-scholar.mjs      ← 从 Google Scholar 抓取结果导入论文
    ├─ optimize-og.py          ← 压缩分享图
    ├─ check-seo.mjs           ← 检查各页 title / canonical / hreflang
@@ -670,21 +684,30 @@ python _tools/extract-docx.py        # 读 Selected Publications.docx（代表�
 - [x] 顶部导航项在桌面端居中（原来靠 flex 的 space-between，左右宽度不等所以偏）
 - [x] 代表性论文换成实验室《Selected Publications》清单里的 10 篇，引用格式已校对；
       新增 2 篇（ECCV 2026、ACM MM 2026），论文总数 100 → 102
+- [x] 研究方向配图换成**自绘矢量网络图**（SVG、品牌配色、带动画），不再用论文框架图；
+      卡片底部不再需要论文出处那一行（自己的图没有第三方版权）
+- [x] 首页四格换成按方向一一对应的真实影像（NASA 公有领域）：韦德尔海三频 SAR /
+      SIR-C 三维地形透视 / Robonaut 2 / 沿海城市光学影像
+- [x] 研究方向卡片桌面端改为**左右等宽**（原 5:7），配图更大、卡面文字更清楚
 
 **待实验室确认**
 - [ ] 研究方向的 `points`（子方向条目）是按方向内涵整理的，需确认表述准确
 - [ ] 首页「关于我们」第 1 段里的「教师 1 人、在读研究生 27 人」需与实验室口径核对
-- [ ] **第 ① 个方向（多源数据智能分析）的配图许可需确认**：用的是 IEEE TIP 论文的
-      arXiv 版（CC BY-NC-SA 4.0）。建议换成正式版插图或换成一篇 CC BY 论文的图
 - [ ] 代表性论文里原本标注的「共同一作 `#`」「通讯作者 `*`」「CVPR Highlight」等信息，
       因站点没有图例机制被去掉了 —— 若想在页面上体现，需加一段图例说明
 - [ ] 如果实验室有微信公众号，把二维码放到 `public/img/` 并填 `site.ts` 的 `contact.wechatQr`
 - [ ] 论文列表只有 10 篇代表性论文用了完整姓名，其余 92 篇是 Scholar 的缩写形式。
       若想全表统一成完整姓名，需要用 Scholar 之外的来源逐条补（工作量大，非必要不建议）
+- [ ] 研究方向配图里的文案是英文技术术语（`SAR` / `3D` / `Detection Head` …），
+      中英双语共用一张图。如果希望中文页面也用中文标注，需要改成两张图按语言切换
+- [ ] 首页第 1 格的「交叉淡入」动态效果这一轮没有使用（四格各要对应一个方向，
+      凑不出同一场景的两个状态）。若想恢复，找一对同机位影像填 `srcAlt` 即可
 
 **可选**
-- [ ] 想换成别的论文插图：覆盖 `public/img/research/<方向id>.png` 即可，代码不用动
-- [ ] 首页拼贴也可以换成实验室自己的照片或成果图（`src/config/site.ts` 的 `aboutImages`）
+- [ ] 想换研究方向配图：改 `_tools/build-research-diagrams.mjs` 里的坐标与文案后重新生成，
+      **不要直接改 `.svg`**（生成产物，下次运行会被覆盖）
+- [ ] 首页拼贴也可以换成实验室自己的照片或成果图（覆盖 `public/img/about-1..4.jpg`，
+      建议 640×480、4:3；或改 `build-about-images.py` 的 `STATIC` 从头生成）
 - [ ] 学生的 `nameEn`（拼音）目前只有杨老师填了，其余留空显示中文名 —— 需要就补
 - [ ] 学生目前都没有照片（沿用参考站点的做法，维护成本最低）；想加照片就放
       `public/img/people/` 并填 `photo` 字段

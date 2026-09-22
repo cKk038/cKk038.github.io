@@ -4,10 +4,11 @@
  * 四个方向与实验室官方主页（web.xidian.edu.cn/yangx）上「主要研究方向」一致。
  * 下面的简介与子方向条目是按方向内涵整理的，如与实验室内部表述不符请直接改写。
  *
- * ── 配图来自实验室自己论文里的框架图 ──────────────────────────
- * 不是自绘示意图，而是从实验室代表性论文里取的 framework 图，
- * 出处、作者、许可都记录在 public/img/research/research-CREDITS.md。
- * 三篇是 MDPI《Remote Sensing》（CC BY 4.0），一篇是 arXiv 版本（CC BY-NC-SA 4.0）。
+ * ── 配图是自绘的矢量网络图 ────────────────────────────────────
+ * 不用论文里的 framework 图：那种图是为具体方法服务的，缩到卡片宽度后小字全糊，
+ * 而且跟「这个方向在研究什么」对不上。现在改成按方向内涵画的通用网络图，
+ * 由 _tools/build-research-diagrams.mjs 生成成 SVG（矢量、品牌配色、带动画）。
+ *
  *
  * ── 怎么写一个方向 ──────────────────────────────────────────
  *   {
@@ -18,7 +19,7 @@
  *       { zh: '……', en: '…' },
  *     ],
  *     icon: 'bi-diagram-3',                 // Bootstrap Icons 图标名
- *     image: '/img/research/multi-source.png',   // 论文框架图；不给则只显示图标
+ *     image: '/img/research/multi-source.svg',   // 论文框架图；不给则只显示图标
  *     paper: {                              // 可选：图注里标出论文来源
  *       title: '…', venue: '…', url: '…',
  *     },
@@ -36,10 +37,8 @@ export interface ResearchTopic {
   points: L[];
   /** Bootstrap Icons 图标名 */
   icon: string;
-  /** 配图路径（论文框架图）。不给则卡片只显示图标与文字 */
+  /** 配图路径（自绘网络图，见 _tools/build-research-diagrams.mjs）。不给则卡片只显示图标与文字 */
   image?: string;
-  /** 配图出处，显示在图注里 */
-  paper?: { title: string; venue: string; url: string };
 }
 
 export const topics: ResearchTopic[] = [
@@ -57,12 +56,7 @@ export const topics: ResearchTopic[] = [
       { zh: '多源信息协同的目标解译', en: 'Collaborative target interpretation across sources' },
     ],
     icon: 'bi-diagram-3',
-    image: '/img/research/multi-source.png',
-    paper: {
-      title: 'Lightweight RGB-D Salient Object Detection from a Speed-Accuracy Tradeoff Perspective',
-      venue: 'IEEE TIP 2025',
-      url: 'https://arxiv.org/abs/2505.04758',
-    },
+    image: '/img/research/multi-source.svg',
   },
   {
     id: '4d-scene',
@@ -78,12 +72,7 @@ export const topics: ResearchTopic[] = [
       { zh: '动态场景的时空建模', en: 'Spatio-temporal modelling of dynamic scenes' },
     ],
     icon: 'bi-badge-3d',
-    image: '/img/research/4d-scene.png',
-    paper: {
-      title: '3D Point Cloud Shape Generation with Collaborative Learning of GAN and Auto-Encoder',
-      venue: 'Remote Sensing 2024, 16(10), 1772',
-      url: 'https://www.mdpi.com/2072-4292/16/10/1772',
-    },
+    image: '/img/research/4d-scene.svg',
   },
   {
     id: 'embodied',
@@ -99,12 +88,7 @@ export const topics: ResearchTopic[] = [
       { zh: '人机交互与协作', en: 'Human–robot interaction and collaboration' },
     ],
     icon: 'bi-robot',
-    image: '/img/research/embodied.png',
-    paper: {
-      title: 'Adaptive Granularity-Fused Keypoint Detection for 6D Pose Estimation of Space Targets',
-      venue: 'Remote Sensing 2024, 16(22), 4138',
-      url: 'https://www.mdpi.com/2072-4292/16/22/4138',
-    },
+    image: '/img/research/embodied.svg',
   },
   {
     id: 'remote-sensing',
@@ -120,12 +104,7 @@ export const topics: ResearchTopic[] = [
       { zh: '变化检测与地物要素提取', en: 'Change detection and land-cover extraction' },
     ],
     icon: 'bi-crosshair',
-    image: '/img/research/remote-sensing.png',
-    paper: {
-      title: 'Coastal Ship Tracking with Memory-Guided Perceptual Network',
-      venue: 'Remote Sensing 2023, 15(12), 3150',
-      url: 'https://www.mdpi.com/2072-4292/15/12/3150',
-    },
+    image: '/img/research/remote-sensing.svg',
   },
 ];
 

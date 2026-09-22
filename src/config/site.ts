@@ -54,42 +54,46 @@ export const site = {
   /**
    * 首页「关于我们」左侧 2×2 图片拼贴（4:3）。
    *
-   * 四格**分别对应实验室的四个研究方向**，四张图都来自 NASA 图片库（公有领域），
-   * 出处见 public/img/about-CREDITS.md：
-   *   第 1 格  四维场景生成理解   —— 拉斯维加斯 1984/2010 两期影像（同一场景随时间演化）
-   *   第 2 格  多源数据智能分析   —— Flevoland 三频假彩色 SAR
+   * 四格**按顺序分别对应实验室的四个研究方向**，与研究方向页一致，
+   * 四张图都来自 NASA 图片库（公有领域），出处见 public/img/about-CREDITS.md：
+   *   第 1 格  多源数据智能分析   —— 韦德尔海三频假彩色 SAR（多波段合成 = 多源融合）
+   *   第 2 格  四维场景生成理解   —— SIR-C 三维地形透视（带景深的三维场景）
    *   第 3 格  具身智能与智能体   —— Robonaut 2 人形机器人
-   *   第 4 格  遥感目标智能感知   —— 东京与东京湾的 Landsat 影像
+   *   第 4 格  遥感目标智能感知   —— 轨道拍摄的沿海城市，港口/机场/农田等目标清晰
    *
-   * 第一格是**动态**的：填了 `srcAlt` 就会把两张图交叉淡入淡出。
-   * 用「两张图 + CSS 过渡」而不是动图：同样效果体积小 5 倍，还能跟随
-   * 系统的「减少动态效果」设置自动静止。
+   * 关于动态效果：早期第 1 格填了 `srcAlt`，把两张同机位影像交叉淡入淡出，用来表现
+   * 「随时间变化」。现在四格各对应一个方向，凑不出同场景的两个状态，所以都是静态的。
+   * **机制仍然保留**：给任意一格填上 `srcAlt`，`.collage-fade` 的交叉淡入就会自动生效
+   * （实现见 src/styles/global.css）。
    */
   aboutImages: [
     {
-      src: '/img/about-1a.jpg',
-      /** 第二张图。有值时两张交叉淡入淡出；没有则只显示 src */
-      srcAlt: '/img/about-1b.jpg',
-      altZh: '拉斯维加斯 1984 年与 2010 年卫星影像对比，展示城市随时间扩张',
-      altEn: 'Landsat comparison of Las Vegas in 1984 and 2010, showing urban growth over time',
+      src: '/img/about-1.jpg',
+      /** 第二张图。有值时两张交叉淡入淡出；没有则只显示 src（当前四格都没有） */
+      srcAlt: null,
+      altZh: '韦德尔海的三频假彩色合成孔径雷达影像，雷达波段合成的海冰与洋流纹理',
+      altEn:
+        'Three-frequency false-colour SAR image of the Weddell Sea, showing sea-ice floes and ocean-current textures',
     },
     {
       src: '/img/about-2.jpg',
       srcAlt: null,
-      altZh: '荷兰 Flevoland 的三频假彩色合成孔径雷达（SAR）影像，三个频段合成的规则农田地块',
-      altEn: 'Three-frequency false-colour SAR image of Flevoland, the Netherlands, fusing three radar bands',
+      altZh: '由 SIR-C 雷达数据生成的三维地形透视图，加州 Mammoth 地区，可见山脊与湖泊的景深',
+      altEn:
+        'Three-dimensional perspective view of the Mammoth, California terrain generated from SIR-C radar data',
     },
     {
       src: '/img/about-3.jpg',
       srcAlt: null,
-      altZh: '国际空间站上的 Robonaut 2 人形机器人',
-      altEn: 'Robonaut 2 humanoid robot aboard the International Space Station',
+      altZh: '国际空间站舱内的 Robonaut 2 人形机器人，双臂展开',
+      altEn: 'Robonaut 2 humanoid robot with arms outstretched aboard the International Space Station',
     },
     {
       src: '/img/about-4.jpg',
       srcAlt: null,
-      altZh: '东京与东京湾的 Landsat 卫星影像，可见城市与港口设施',
-      altEn: 'Landsat satellite view of Tokyo and Tokyo Bay, showing urban and port infrastructure',
+      altZh: '轨道拍摄的沿海城市白天光学影像，可见港口、机场跑道与农田',
+      altEn:
+        'Daylight orbital photograph of a coastal city, showing its harbour, airport runway and farmland',
     },
   ],
 

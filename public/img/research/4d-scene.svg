@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800" role="img">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#9DC2DD"/>
+  </marker>
+  <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+    <circle cx="1.5" cy="1.5" r="1.2" fill="#E3EFFA"/>
+  </pattern>
+</defs>
+<style>
+  /* 系统开了「减少动态效果」就整体静止 —— 不靠 JS，纯 CSS 媒体查询 */
+  @media (prefers-reduced-motion: reduce) {
+    .flow, .pulse, .fade { animation: none !important; }
+    .pulse { opacity: 1 !important; }
+  }
+  .flow {
+    stroke-dasharray: 9 11;
+    animation: flowDash 1.6s linear infinite;
+  }
+  @keyframes flowDash {
+    to { stroke-dashoffset: -20; }
+  }
+
+  .pulse rect { animation: pulse4d 2.1s ease-in-out infinite; }
+  @keyframes pulse4d {
+    0%, 100% { stroke: #C7DFF1; stroke-width: 1.6; }
+    20%, 40% { stroke: #2E9BD6; stroke-width: 3.2; }
+  }</style>
+<rect width="1280" height="800" fill="#F6FAFE"/>
+<rect width="1280" height="800" fill="url(#dots)"/><rect x="116" y="196" width="150" height="106" rx="10" fill="#EAF4FC" stroke="#C7DFF1" stroke-width="1.6"/><rect x="104" y="184" width="150" height="106" rx="10" fill="#EAF4FC" stroke="#C7DFF1" stroke-width="1.6"/><rect x="92" y="172" width="150" height="106" rx="10" fill="#FFFFFF" stroke="#2E9BD6" stroke-width="1.6"/><line x1="100" y1="234" x2="238" y2="234" stroke="#9DC2DD" stroke-width="1.6"/><rect x="162" y="208" width="26" height="26" rx="3" fill="#2E9BD6" opacity="0.75"/><rect x="1054" y="202" width="34" height="34" rx="6" fill="#FFFFFF" opacity="0.85"/><rect x="1098" y="202" width="34" height="34" rx="6" fill="#FFFFFF" opacity="0.85"/><rect x="1142" y="202" width="34" height="34" rx="6" fill="#FFFFFF" opacity="0.85"/><text x="197" y="334" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="28.35" font-weight="700" fill="#0E1F38">Multi-view Input</text><text x="197" y="358" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="18.900000000000002" font-weight="400" fill="#55688A">images &amp; video</text><rect x="380" y="150" width="230" height="150" rx="12" fill="#FFFFFF" stroke="#C7DFF1" stroke-width="1.6" opacity="1"/><text x="495" y="235.206" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="28.35" font-weight="700" fill="#0E1F38">2D Encoder</text><text x="495" y="270" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="18.900000000000002" font-weight="400" fill="#55688A">multi-scale features</text><rect x="690" y="150" width="230" height="150" rx="12" fill="#FFFFFF" stroke="#C7DFF1" stroke-width="1.6" opacity="1"/><text x="805" y="235.206" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="28.35" font-weight="700" fill="#0E1F38">3D Generation</text><text x="805" y="270" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="18.900000000000002" font-weight="400" fill="#55688A">points · Gaussians</text><rect x="1000" y="150" width="230" height="150" rx="12" fill="#2E9BD6" stroke="#1F7FB5" stroke-width="2" opacity="1"/><text x="1115" y="235.206" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="28.35" font-weight="700" fill="#FFFFFF">4D Scene</text><text x="1115" y="270" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="18.900000000000002" font-weight="400" fill="#FFFFFF">3D + time</text><line x1="260" y1="228" x2="368" y2="228" stroke="#9DC2DD" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/><line x1="622" y1="228" x2="678" y2="228" stroke="#9DC2DD" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/><line x1="932" y1="228" x2="988" y2="228" stroke="#9DC2DD" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/><line x1="150" y1="540" x2="1160" y2="540" stroke="#55688A" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/><text x="1190" y="548" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="27" font-weight="700" fill="#55688A">t</text><text x="660" y="586" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="27" font-weight="700" fill="#0E1F38">Time axis — the fourth dimension</text><g class="pulse" style="animation-delay:0s"><rect x="208" y="390" width="184" height="118" rx="12" fill="#FFFFFF" stroke="#C7DFF1" stroke-width="1.6" opacity="1"/></g><g stroke="#2E9BD6" stroke-width="1.6" fill="none" opacity="0.85">
+      <path d="M 254 464 L 286 453 L 286 485 L 254 496 Z"/>
+      <path d="M 286 453 L 310 444 L 310 476 L 286 485"/>
+      <path d="M 254 464 L 278 455 L 310 444"/>
+      <path d="M 278 455 L 278 487"/>
+    </g><text x="340" y="436" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="35.1" font-weight="800" fill="#1F7FB5">t₁</text><text x="340" y="462" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="17.55" font-weight="400" fill="#55688A">snapshot 1</text><line x1="300" y1="520" x2="300" y2="526" stroke="#55688A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow)"/><g class="pulse" style="animation-delay:0.7s"><rect x="548" y="390" width="184" height="118" rx="12" fill="#FFFFFF" stroke="#C7DFF1" stroke-width="1.6" opacity="1"/></g><g stroke="#2E9BD6" stroke-width="1.6" fill="none" opacity="0.85">
+      <path d="M 594 464 L 626 453 L 626 485 L 594 496 Z"/>
+      <path d="M 626 453 L 650 444 L 650 476 L 626 485"/>
+      <path d="M 594 464 L 618 455 L 650 444"/>
+      <path d="M 618 455 L 618 487"/>
+    </g><text x="680" y="436" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="35.1" font-weight="800" fill="#1F7FB5">t₂</text><text x="680" y="462" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="17.55" font-weight="400" fill="#55688A">snapshot 2</text><line x1="640" y1="520" x2="640" y2="526" stroke="#55688A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow)"/><g class="pulse" style="animation-delay:1.4s"><rect x="888" y="390" width="184" height="118" rx="12" fill="#FFFFFF" stroke="#C7DFF1" stroke-width="1.6" opacity="1"/></g><g stroke="#2E9BD6" stroke-width="1.6" fill="none" opacity="0.85">
+      <path d="M 934 464 L 966 453 L 966 485 L 934 496 Z"/>
+      <path d="M 966 453 L 990 444 L 990 476 L 966 485"/>
+      <path d="M 934 464 L 958 455 L 990 444"/>
+      <path d="M 958 455 L 958 487"/>
+    </g><text x="1020" y="436" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="35.1" font-weight="800" fill="#1F7FB5">t₃</text><text x="1020" y="462" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="17.55" font-weight="400" fill="#55688A">snapshot 3</text><line x1="980" y1="520" x2="980" y2="526" stroke="#55688A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow)"/><rect x="70" y="650" width="350" height="76" rx="12" fill="#FFFFFF" stroke="#C7DFF1" stroke-width="1.6" opacity="1"/><text x="245" y="684" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="25.650000000000002" font-weight="700" fill="#0E1F38">Novel View Synthesis</text><text x="245" y="709.033" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="17.55" fill="#55688A">render unseen viewpoints</text><rect x="460" y="650" width="350" height="76" rx="12" fill="#FFFFFF" stroke="#C7DFF1" stroke-width="1.6" opacity="1"/><text x="635" y="684" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="25.650000000000002" font-weight="700" fill="#0E1F38">Temporal Consistency</text><text x="635" y="709.033" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="17.55" fill="#55688A">stable 3D across time</text><rect x="850" y="650" width="350" height="76" rx="12" fill="#FFFFFF" stroke="#C7DFF1" stroke-width="1.6" opacity="1"/><text x="1025" y="684" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="25.650000000000002" font-weight="700" fill="#0E1F38">Dynamic Scene Editing</text><text x="1025" y="709.033" text-anchor="middle" font-family="Nunito, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="17.55" fill="#55688A">edit geometry over time</text>
+</svg>
